@@ -11,6 +11,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
 
   const signIn = (e) => {
+    
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -21,6 +22,9 @@ const SignIn = () => {
         console.log(error);
       });
   };
+  const signUpNav = () => {
+    navigate('/signup');
+} 
 
   return (
     <div className="sign-in-container">
@@ -40,6 +44,9 @@ const SignIn = () => {
         ></input>
         <button type="submit">Log In</button>
       </form>
+
+      <button onClick={signUpNav}>Not signed in yet?</button>
+
     </div>
   );
 };

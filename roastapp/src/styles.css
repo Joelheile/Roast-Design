@@ -49,3 +49,20 @@ body {
 .nav li:hover {
   background-color: #777;
 }
+
+.row {
+    display: flex;
+    margin-top: 2rem;
+     justify-content: center;
+
+  }
+  
+  .column {
+    flex: 50%;
+    justify-content: center;
+    align-items: center;
+    margin:10px;
+    text-align: center;
+    display:table-cell;
+    vertical-align:middle;
+  }
