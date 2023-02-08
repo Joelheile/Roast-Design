@@ -3,14 +3,10 @@ import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import { useNavigate } from "react-router-dom";
 import "../styles/homePage.css";
 import "../App.css";
+import supabase from "../components/supabaseClient";
 
 import React, { useEffect, useState } from "react";
 import NewProject from "./newProject";
-
-const supabase = createClient(
-	"https://zvchclcaprpzykvfkoxr.supabase.co",
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp2Y2hjbGNhcHJwenlrdmZrb3hyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzU4MTA5ODIsImV4cCI6MTk5MTM4Njk4Mn0.Z4cu3-ZcqcAYvB17Wyy5qiiluymXCo_NuaXD4OZW3SA"
-);
 
 function Home() {
 	const [user, setUser] = useState({}); // object
@@ -36,6 +32,23 @@ function Home() {
 		navigate("/");
 	}
 
+	const [projects, setProjects] = useState([]);
+	const [project, setProject] = useState({
+		userID: "",
+		title: "",
+		images_url: [],
+	});
+	const { userID, title, images_url } = project; // destructure it to easier use in component
+
+	useEffect(() => {
+		fetchProjects();
+	}, []);
+
+	async function fetchProjects() {
+		const { data } = await supabase.from("projects").select(setProjects(data));
+		console.log("data: ", data);
+	}
+
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -52,6 +65,12 @@ function Home() {
 								Need another roast?
 							</button>
 						</div>
+						{projects.map((project) => (
+							<div key={project.id}>
+								<h3>{project.userID}</h3>
+								<p> HIER MÜSSEN BILDER ALS ARRAY HIN</p>
+							</div>
+						))}
 						<button
 							id="signout"
 							className="button"
