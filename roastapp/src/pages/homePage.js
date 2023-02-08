@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import { useNavigate } from "react-router-dom";
 import "../styles/homePage.css";
+import "../App.css";
 
 import React, { useEffect, useState } from "react";
 import NewProject from "./newProject";
@@ -43,11 +44,19 @@ function Home() {
 					<>
 						<div>
 							<h1>Roast</h1>
-							<button id="newPage" onClick={() => navigate("/new")}>
+							<button
+								id="ButtonNewPage"
+								className="button"
+								onClick={() => navigate("/new")}
+							>
 								Need another roast?
 							</button>
 						</div>
-						<button id="signout" onClick={() => signOutUser()}>
+						<button
+							id="signout"
+							className="button"
+							onClick={() => signOutUser()}
+						>
 							Sign out
 						</button>
 					</>
@@ -55,6 +64,7 @@ function Home() {
 					<>
 						<h1>User is not logged in</h1>
 						<button
+							className="button"
 							onClick={() => {
 								navigate("/");
 							}}
