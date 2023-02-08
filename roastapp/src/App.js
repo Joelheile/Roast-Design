@@ -1,25 +1,14 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import "./styles/navbar.css";
-
-import Login from "./pages/loginPage";
-import Home from "./pages/homePage";
-import NewProject from "./pages/newProject";
-import Navbar from "./components/navbar";
+import SignIn from "./components/auth/SignIn";
+import SignUp from "./components/auth/SignUp";
+import AuthDetails from "./components/AuthDetails";
 
 function App() {
 	return (
-		<>
-			<Navbar />
-			<Router>
-				<Routes>
-					<Route path="/" element={<Login />} />
-					<Route path="/home" element={<Home />} />
-					<Route path="/new" element={<NewProject />} />
-				</Routes>
-			</Router>
-		</>
+		<div className="App">
+			<SignIn />
+			<SignUp />
+			<AuthDetails />
+		</div>
 	);
 }
 
