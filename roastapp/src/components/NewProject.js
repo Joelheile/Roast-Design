@@ -8,7 +8,10 @@ export default function NewProject() {
 	const projectsCollectionRef = collection(db, "projects");
 
 	const createProject = async () => {
-		await addDoc(projectsCollectionRef, { title: newProject });
+		await addDoc(projectsCollectionRef, {
+			title: newProject,
+			userID: "",
+		});
 	};
 
 	return (

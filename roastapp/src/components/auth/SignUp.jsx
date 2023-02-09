@@ -1,16 +1,24 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { addDoc, collection, doc, serverTimestamp, setDoc, Timestamp } from "firebase/firestore";
 import React, { useState } from "react";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let navigate = useNavigate();
 
   const signUp = (e) => {
     e.preventDefault();
+    
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
+        // const ref = doc(db, "projects", userCredential.user.uid)
+        // const docRef = await setDoc(ref, {email}, Timestamp)
         console.log(userCredential);
+        await addDoc(collection(db, "users"), {email, userID: userCredential.user.uid, timestamp: serverTimestamp()}, ).then((re) => {alert("yes the data has been enteres")})
+        navigate("/dashboard");
       })
       .catch((error) => {
         console.log(error);

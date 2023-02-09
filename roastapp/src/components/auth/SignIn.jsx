@@ -16,6 +16,7 @@ const SignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
+        
         navigate("/dashboard");
       })
       .catch((error) => {
@@ -50,5 +51,4 @@ const SignIn = () => {
     </div>
   );
 };
-
 export default SignIn;
