@@ -17,8 +17,9 @@ const SignUp = () => {
         // const ref = doc(db, "projects", userCredential.user.uid)
         // const docRef = await setDoc(ref, {email}, Timestamp)
         console.log(userCredential);
-        await addDoc(collection(db, "users"), {email, userID: userCredential.user.uid, timestamp: serverTimestamp()}, ).then((re) => {alert("yes the data has been enteres")})
-        navigate("/dashboard");
+        await addDoc(collection(db, "users", userCredential.user.uid), {email, userID: userCredential.user.uid, timestamp: serverTimestamp()}, ).then((re) => {alert("yes the data has been enteres")})
+        navigate("/dashboard", {state: userCredential.user.uid})
+      
       })
       .catch((error) => {
         console.log(error);
@@ -46,5 +47,4 @@ const SignUp = () => {
     </div>
   );
 };
-
 export default SignUp;

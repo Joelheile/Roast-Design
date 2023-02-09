@@ -2,15 +2,17 @@ import { collection, getDocs, addDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import "../styles.css";
 import { db } from "../firebase";
+import { useLocation } from "react-router-dom";
 
-export default function NewProject() {
+export default function NewProject(props) {
 	const [newProject, setNewProject] = useState("");
 	const projectsCollectionRef = collection(db, "projects");
+	const userID = useLocation(); // get userID passed from dashboard
 
 	const createProject = async () => {
 		await addDoc(projectsCollectionRef, {
 			title: newProject,
-			userID: "",
+			userID: userID.state,
 		});
 	};
 
@@ -20,6 +22,7 @@ export default function NewProject() {
 				<div class="row">
 					<div class="column">
 						<div>
+							<h2>{userID.state}</h2>
 							<h1>New Roast</h1>
 							<button class="button">Upload Files</button>
 							<input

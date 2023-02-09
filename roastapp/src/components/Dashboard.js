@@ -1,8 +1,10 @@
 import { collection, deleteDoc, getDocs, doc } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 
-export default function Dashboard() {
+export default function Dashboard(props) {
 	const [projects, setProjects] = useState([]);
 	const projectsCollectionRef = collection(db, "projects");
 	useEffect(() => {
@@ -21,9 +23,16 @@ export default function Dashboard() {
 	};
 	*/
 
+	const userID = useLocation(); // get userID from sign in / sign up
+	let navigate = useNavigate();
+
 	return (
 		<div>
 			<h1>Dashbaord</h1>
+			<button onClick={() => navigate("/new", { state: userID.state })}>
+				Ready for new roast?
+			</button>
+			<h2>{userID.state}</h2>
 			{projects.map((projects) => {
 				return (
 					<div>

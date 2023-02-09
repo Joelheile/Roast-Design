@@ -7,7 +7,6 @@ export default function Navbar() {
 				Site Name
 			</Link>
 			<ul>
-				<CustomLink to="/new">New</CustomLink>
 				<CustomLink to="/signout">SignOut</CustomLink>
 			</ul>
 		</nav>

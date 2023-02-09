@@ -17,7 +17,7 @@ const SignIn = () => {
       .then((userCredential) => {
         console.log(userCredential);
         
-        navigate("/dashboard");
+        navigate("/dashboard", {state: userCredential.user.uid})
       })
       .catch((error) => {
         console.log(error);
