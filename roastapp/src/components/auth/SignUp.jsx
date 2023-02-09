@@ -18,7 +18,7 @@ const SignUp = () => {
         // const docRef = await setDoc(ref, {email}, Timestamp)
         console.log(userCredential);
         await addDoc(collection(db, "users", userCredential.user.uid), {email, userID: userCredential.user.uid, timestamp: serverTimestamp()}, ).then((re) => {alert("yes the data has been enteres")})
-        navigate("/dashboard", {state: userCredential.user.uid})
+        navigate("/project", {state: userCredential.user.uid})
       
       })
       .catch((error) => {
