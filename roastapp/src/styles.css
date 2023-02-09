@@ -66,3 +66,8 @@ body {
     display:table-cell;
     vertical-align:middle;
   }
+
+  .previewImage{
+   
+    width: 30px;
+  }

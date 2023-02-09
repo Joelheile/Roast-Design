@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import "./styles.css";
 import NewProject from "./components/NewProject";
+import SuccessAndCopy from "./components/SuccessAndCopy";
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 				<Route path="/signout" element={<AuthDetails />} />
 				<Route path="/dashboard" element={<Dashboard />} />
 				<Route path="/new" element={<NewProject />} />
+				<Route path="/success" element={<SuccessAndCopy />} />
 			</Routes>
 		</div>
 	);
