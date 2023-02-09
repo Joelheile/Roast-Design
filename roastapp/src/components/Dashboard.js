@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, getDocs, doc } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
 
@@ -14,6 +14,12 @@ export default function Dashboard() {
 		};
 		getProjects();
 	}, []);
+	/*
+	const deleteProject = async (id) => {
+		const projectDoc = doc(db, "projects", id);
+		await deleteDoc(projectDoc);
+	};
+	*/
 
 	return (
 		<div>
