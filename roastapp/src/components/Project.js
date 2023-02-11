@@ -16,6 +16,7 @@ export default function Project(props) {
 
 	const userID = useLocation(); // get userID from sign in / sign up
 	let navigate = useNavigate();
+	console.log(userID.state);
 
 	useEffect(() => {
 		// called when page renders
@@ -27,7 +28,6 @@ export default function Project(props) {
 		getProjects();
 	}, []);
 
-	//TODO: IRGENDWIE DIE IMAGE URL PASSEN, UM DANN KOMMENTARE ZU BAUEN
 	return (
 		<div>
 			<h1>Project</h1>
@@ -46,18 +46,17 @@ export default function Project(props) {
 						<Link
 							to={{
 								pathname: `/project/${projects.projectCheckID}`,
-								state: {
-									projectCheckID: projects.projectCheckID,
-									title: projects.title,
-									imageURL: projects.imageURL,
-									userID: projects.user,
-								},
+							}}
+							state={{
+								projectCheckID: projects.projectCheckID,
+								title: projects.title,
+								imageURL: projects.imageURL,
+								userID: userID.state,
 							}}
 						>
 							<div className="card">
 								<h1>{projects.title}</h1>
 								<p>{projects.projectCheckID}</p>
-								<p>{projects.imageURL}</p>
 							</div>
 						</Link>
 					</div>

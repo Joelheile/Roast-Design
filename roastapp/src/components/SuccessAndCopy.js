@@ -20,6 +20,7 @@ export default function SuccessAndCopy(props) {
 					onClick={() => {
 						navigator.clipboard.writeText(copyText);
 						alert("Copied");
+						navigate("/project");
 					}}
 				>
 					Copy
