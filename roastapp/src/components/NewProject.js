@@ -4,12 +4,15 @@ import "../styles.css";
 import { db } from "../firebase";
 import { useLocation, useNavigate } from "react-router-dom";
 import { storage } from "../firebase";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 
 export default function NewProject(props) {
 	let navigate = useNavigate();
 	const [newProject, setNewProject] = useState("");
+	const [imageUrls, setImageUrls] = useState([]);
+	const [previewFile, setPreviewFile] = useState();
+
 	const projectsCollectionRef = collection(db, "projects");
 	const userID = useLocation(); // get userID passed from dashboard
 	const projectCheckID = v4();
@@ -22,7 +25,12 @@ export default function NewProject(props) {
 			storage,
 			`images/${userID.state}/${projectCheckID}/${imageUpload.name + v4()}`
 		);
-		uploadBytes(imageRef, imageUpload);
+		uploadBytes(imageRef, imageUpload).then((snapshot) => {
+			getDownloadURL(snapshot.ref).then((url) => {
+				setImageUrls((prev) => [...prev, url]);
+			});
+		});
+
 		await addDoc(projectsCollectionRef, {
 			title: newProject,
 			userID: userID.state,
@@ -44,6 +52,7 @@ export default function NewProject(props) {
 							type="file"
 							onChange={(event) => {
 								setImageUpload(event.target.files[0]);
+								setPreviewFile(URL.createObjectURL(event.target.files[0]));
 							}}
 						/>
 						<input
@@ -57,6 +66,7 @@ export default function NewProject(props) {
 					</div>
 					<div class="column">
 						<h1>Preview</h1>
+						<img src={previewFile} className="previewImage" />
 					</div>
 				</div>
 			</body>

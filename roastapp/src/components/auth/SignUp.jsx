@@ -17,12 +17,16 @@ const SignUp = () => {
         // const ref = doc(db, "projects", userCredential.user.uid)
         // const docRef = await setDoc(ref, {email}, Timestamp)
         console.log(userCredential);
-        await addDoc(collection(db, "users", userCredential.user.uid), {email, userID: userCredential.user.uid, timestamp: serverTimestamp()}, ).then((re) => {alert("yes the data has been enteres")})
-        navigate("/project", {state: userCredential.user.uid})
-      
+       
+        const user = userCredential.user;
+        const docRef = doc(db, "users", user.uid)
+        await setDoc(docRef,{email, userID: user.uid, timestamp: serverTimestamp()})
+        .then((re) => {console.log("yes the data has been enteres")})
+        navigate("/project", {state: user.uid})
       })
       .catch((error) => {
         console.log(error);
+        alert("Sorry there is already an account with this mail")
       });
   };
 

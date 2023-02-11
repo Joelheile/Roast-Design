@@ -3,12 +3,18 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage";
 import { db } from "../firebase";
+import { storage } from "../firebase";
 import "../styles.css";
 
 export default function Project(props) {
 	const [projects, setProjects] = useState([]);
 	const projectsCollectionRef = collection(db, "projects");
+
+	const userID = useLocation(); // get userID from sign in / sign up
+	let navigate = useNavigate();
+
 	useEffect(() => {
 		// called when page renders
 
@@ -18,15 +24,6 @@ export default function Project(props) {
 		};
 		getProjects();
 	}, []);
-	/*
-	const deleteProject = async (id) => {
-		const projectDoc = doc(db, "projects", id);
-		await deleteDoc(projectDoc);
-	};
-	*/
-
-	const userID = useLocation(); // get userID from sign in / sign up
-	let navigate = useNavigate();
 
 	//TODO: IRGENDWIE DIE IMAGE URL PASSEN, UM DANN KOMMENTARE ZU BAUEN
 	return (
@@ -52,8 +49,8 @@ export default function Project(props) {
 						>
 							<div className="card">
 								<h1>{projects.title}</h1>
-
-								<img src={projects.imageURL} />
+								<p>{projects.projectCheckID}</p>
+								<p>{projects.imageURL}</p>
 							</div>
 						</Link>
 					</div>
