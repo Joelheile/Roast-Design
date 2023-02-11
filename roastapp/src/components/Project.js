@@ -7,7 +7,7 @@ import { ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { db } from "../firebase";
 import { storage } from "../firebase";
-import "../styles.css";
+// import css
 import CommentProject from "./CommentProject";
 
 export default function Project(props) {

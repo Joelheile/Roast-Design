@@ -9,6 +9,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { db, storage } from "../firebase";
 import { getDownloadURL, ref } from "firebase/storage";
+import Draggable from "react-draggable";
 import firebase from "firebase/app";
 import "firebase/storage";
 
@@ -22,20 +23,67 @@ const CommentProject = (props) => {
 	const [url, setURL] = useState();
 
 	useEffect(() => {
+		// one time loading
 		const func = async () => {
 			const reference = ref(storage, data.imageURL);
 			await getDownloadURL(reference).then((x) => {
+				// x is just parameter
 				setURL(x);
 			});
 		};
 		func();
 	}, []);
 
+	const [position, setPosition] = useState({ x: 0, y: 0 });
+	const trackPos = (data) => {
+		setPosition({ x: data.x, y: data.y });
+	};
+
+	// image dimensions
+	const [imageDimensions, setImageDimensions] = useState({});
+	const imageUrl = url;
+	const loadImage = (setImageDimensions, imageUrl) => {
+		const img = new Image();
+		img.src = imageUrl;
+
+		img.onload = () => {
+			setImageDimensions({
+				height: img.height,
+				width: img.width,
+			});
+		};
+		img.onerror = (err) => {
+			console.log("img error");
+			console.error(err);
+		};
+	};
+	useEffect(() => {
+		loadImage(setImageDimensions, imageUrl);
+		console.log(imageDimensions);
+	}, []);
+
 	return (
 		<div>
 			<h1>Project Edit {id}</h1>
 			<p>User {data.userID}</p>
-			<img src={url} />
+			<p>
+				<b>Height:</b> {imageDimensions.height}{" "}
+			</p>
+			<p>
+				<b>Width:</b> {imageDimensions.width}{" "}
+			</p>
+
+			<div>
+				<Draggable onDrag={(e, data) => trackPos(data)}>
+					<div className="box">
+						<div>Here's my position...</div>
+						<div>
+							x: {position.x.toFixed(0)}, y: {position.y.toFixed(0)}
+						</div>
+					</div>
+				</Draggable>
+				<img src={url} />
+			</div>
 		</div>
 	);
 };

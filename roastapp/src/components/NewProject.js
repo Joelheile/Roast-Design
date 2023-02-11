@@ -1,6 +1,6 @@
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import React, { useState } from "react";
-import "../styles.css";
+//import "../styles.css";
 import { db } from "../firebase";
 import { useLocation, useNavigate } from "react-router-dom";
 import { storage } from "../firebase";
