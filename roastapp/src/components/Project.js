@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { db } from "../firebase";
 import { storage } from "../firebase";
 import "../styles.css";
+import CommentProject from "./CommentProject";
 
 export default function Project(props) {
 	const [projects, setProjects] = useState([]);
@@ -32,6 +34,11 @@ export default function Project(props) {
 			<button onClick={() => navigate("/project/new", { state: userID.state })}>
 				Ready for new roast?
 			</button>
+			<button
+				onClick={() => navigate("/project/edit", { state: userID.state })}
+			>
+				Edit
+			</button>
 			<h2>{userID.state}</h2>
 			{projects.map((projects) => {
 				return (
@@ -56,6 +63,9 @@ export default function Project(props) {
 					</div>
 				);
 			})}
+			<Routes>
+				<Route path="/project/:id" element={<CommentProject />} />
+			</Routes>
 		</div>
 	);
 }

@@ -2,7 +2,7 @@
 Update docs:
 https://youtu.be/jCY6DH8F4oc?t=1920
 */
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { collection, deleteDoc, getDocs, doc } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
@@ -18,8 +18,10 @@ const CommentProject = (props) => {
 
 	return (
 		<div>
-			<h1>Project {id}</h1>
-			<p>{location.state.projectCheckID}</p>
+			<h1>Project Edit {id}</h1>
+			<Routes>
+				<Route path="/project/:id" element={<CommentProject />} />
+			</Routes>
 		</div>
 	);
 };

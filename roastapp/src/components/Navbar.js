@@ -4,7 +4,7 @@ export default function Navbar() {
 	return (
 		<nav className="nav">
 			<Link to="/project" className="Roast.design">
-				Site Name
+				Roast.design
 			</Link>
 			<ul>
 				<CustomLink to="/signout">SignOut</CustomLink>

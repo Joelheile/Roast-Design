@@ -39,7 +39,7 @@ export default function NewProject(props) {
 		});
 		console.log("Title" + newProject);
 
-		navigate("/success", { state: v4.state });
+		navigate("/success", { state: projectCheckID });
 	};
 
 	return (
@@ -67,6 +67,7 @@ export default function NewProject(props) {
 					<div class="column">
 						<h1>Preview</h1>
 						<img src={previewFile} className="previewImage" />
+						<p>{projectCheckID}</p>
 					</div>
 				</div>
 			</body>

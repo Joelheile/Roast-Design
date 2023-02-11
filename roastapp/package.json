@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/alert": "^2.0.17",
+    "@chakra-ui/system": "^2.4.0",
     "@supabase/auth-ui-react": "^0.2.6",
     "@supabase/supabase-js": "^2.7.1",
     "@testing-library/jest-dom": "^5.16.5",
