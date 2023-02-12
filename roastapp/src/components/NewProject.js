@@ -43,40 +43,45 @@ export default function NewProject(props) {
 	};
 
 	return (
-		<div>
-			<body>
-				<div class="row">
-					<div class="column">
-						<h1>New Roast</h1>
+		<div className="flex grid grid-cols-2 items-center justify-center h-screen">
+			
+				
+					<div class="flex flex-col w-1/2 m-auto justify-center ">
+						<h1 className="text-2xl mb-5 text-primary font-bold">New Roast</h1>
+						<input className="shrink border border-gray-300  hover:bg-hover text-black text-m py-2 px-4 rounded-2xl p-10 mb-5"
+							placeholder="Title"
+							onChange={(event) => {
+								setNewProject(event.target.value);
+							}}
+						/>
+						
 						<input
+						className="mb-12 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primaryLight file:bg-primary hover:file:bg-primaryLighter"
 							type="file"
 							onChange={(event) => {
 								setImageUpload(event.target.files[0]);
 								setPreviewFile(URL.createObjectURL(event.target.files[0]));
 							}}
 						/>
-						<input
-							placeholder="Title"
-							onChange={(event) => {
-								setNewProject(event.target.value);
-							}}
-						/>
+						
 
-						<button onClick={createProject}>Create</button>
+						<button 
+						className="w-1/4 bg-primary hover:bg-primaryLight text-white font-bold py-2 px-4 rounded-2xl"
+						onClick={createProject}>Create</button>
 					</div>
-					<div class="column">
-						<h1>Preview</h1>
+					<div class="flex flex-col w-1/2">
+						<h1 className="text-2xl mb-5 text-primary font-bold">Preview</h1>
 						<img src={previewFile} className="previewImage" />
-						<p>{projectCheckID}</p>
+						
 					</div>
-				</div>
-			</body>
+				
+			
 		</div>
 	);
 }
 
 /*
-
+<p>{projectCheckID}</p>
 Image Preview is missing
 
 {imageUpload && (

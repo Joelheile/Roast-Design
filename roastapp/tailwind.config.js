@@ -16,6 +16,7 @@ module.exports = {
         hover: "#f5f5f5",
         primary: "#2F3C7E",
         primaryLight: "#8AAAE5",
+        primaryLighter: "#97bbfc",
         secondary: "#EEA47FFF",
         neutral: "#FCF6F5FF",
         black: "#1a1a1a",
