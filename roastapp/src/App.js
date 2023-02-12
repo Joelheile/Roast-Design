@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import AuthDetails from "./components/AuthDetails";
@@ -7,10 +8,11 @@ import Navbar from "./components/Navbar";
 import NewProject from "./components/NewProject";
 import SuccessAndCopy from "./components/SuccessAndCopy";
 import CommentProject from "./components/CommentProject";
+import styles from "./index.css";
 
 function App() {
 	return (
-		<div className="App">
+		<div>
 			<Navbar />
 
 			<Routes>

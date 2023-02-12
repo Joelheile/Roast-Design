@@ -2,6 +2,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { auth } from "../../firebase";
+import styles from "../../index.css"
 
 
 
@@ -28,9 +29,11 @@ const SignIn = () => {
 } 
 
   return (
-    <div className="sign-in-container">
+    <div className="text-3xl font-bold underline">
       <form onSubmit={signIn}>
-        <h1>Log In to your Account</h1>
+      <h1 className="text-primary">
+      Hello world!
+    </h1>
         <input
           type="email"
           placeholder="Enter your email"
