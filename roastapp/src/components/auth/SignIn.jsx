@@ -29,7 +29,7 @@ const SignIn = () => {
 } 
 
   return (
-    <div className="text-3xl font-bold underline">
+    <div className="">
       <form onSubmit={signIn}>
       <h1 className="text-primary">
       Hello world!

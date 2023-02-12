@@ -1,16 +1,32 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import React, { Component } from "react";
+import { useNavigate } from "react-router-dom/dist";
 
 export default function Navbar() {
+	let navigate = useNavigate();
+	const signout = () => {
+        navigate('/signout');
+    }
+	const projectNav = () => {
+        navigate('/project');
+    }
+
 	return (
-		<nav className="nav">
-			<Link to="/project" className="Roast.design">
+		<div className="bg-white border-solid border-2 border-gray-200 px-2 sm:px-4 py-2.5 rounded mb-5" >
+		<nav className="container flex flex-wrap items-center justify-between mx-auto">
+			<Link to="/project" className="text-xl font-bold">
 				Roast.design
 			</Link>
-			<ul>
-				<CustomLink to="/signout">SignOut</CustomLink>
-			</ul>
+			<button className="bg-primary hover:bg-primaryLight text-white font-bold py-2 px-4 rounded" onClick={projectNav}>
+				All projects
+			</button>
+			<button className="hover:shadow-md text-black font-bold py-2 px-4 rounded" onClick={signout}>
+				SignOut
+			</button>
 		</nav>
+
+		</div>
+		
 	);
 }
 
