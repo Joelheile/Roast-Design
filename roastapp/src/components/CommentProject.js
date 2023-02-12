@@ -41,6 +41,8 @@ const CommentProject = (props) => {
 		func();
 	}, []);
 
+	// position
+
 	const [position, setPosition] = useState({ x: 0, y: 0 });
 	const trackPos = (data) => {
 		setPosition({ x: data.x, y: data.y });
@@ -123,6 +125,8 @@ const CommentProject = (props) => {
 		});
 		console.log("Comment");
 	};
+
+	// end comment
 
 	return (
 		<div>

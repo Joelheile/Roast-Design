@@ -13,6 +13,7 @@ module.exports = {
       },
       colors: {
         transparent: "transparent",
+        hover: "#f5f5f5",
         primary: "#2F3C7E",
         primaryLight: "#8AAAE5",
         secondary: "#EEA47FFF",

@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage";
+import "firebase/storage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { db } from "../firebase";
-import { storage } from "../firebase";
+import { db, storage } from "../firebase";
+
 // import css
 import CommentProject from "./CommentProject";
 
@@ -18,6 +19,8 @@ export default function Project(props) {
 	let navigate = useNavigate();
 	console.log(userID.state);
 
+	const [url, setURL] = useState();
+
 	useEffect(() => {
 		// called when page renders
 
@@ -25,25 +28,36 @@ export default function Project(props) {
 			const data = await getDocs(projectsCollectionRef);
 			setProjects(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))); // we only want name and id
 		};
+		const funcImages = async () => {
+			const reference = ref(storage, projects.imageURL);
+			await getDownloadURL(reference).then((x) => {
+				// x is just parameter
+				console.log(url)
+				setURL(x);
+			});
+		};
+
 		getProjects();
+		funcImages();
 	}, []);
 
+	// image dimensions
+
+
 	return (
-		<div>
-			<h1>Project</h1>
-			<button onClick={() => navigate("/project/new", { state: userID.state })}>
-				Ready for new roast?
-			</button>
-			<button
-				onClick={() => navigate("/project/edit", { state: userID.state })}
+		<div className="flex flex-col ">
+			<div className="m-auto mt-5 mb-10">
+			<button onClick={() => navigate("/project/new", { state: userID.state })}
+				className=" border border-gray-300  hover:bg-hover text-black text-m py-2 px-4 rounded-2xl p-10 "
 			>
-				Edit
+				Need another roast?
 			</button>
-			<h2>{userID.state}</h2>
+			</div>
+			<div className="flex flex-wrap gap-5  ">
 			{projects.map((projects) => {
 				return (
-					<div className="projectContainer" key={projects.projectCheckID}>
-						<Link
+					<>
+					<Link
 							to={{
 								pathname: `/project/${projects.projectCheckID}`,
 							}}
@@ -54,14 +68,20 @@ export default function Project(props) {
 								userID: userID.state,
 							}}
 						>
-							<div className="card">
-								<h1>{projects.title}</h1>
-								<p>{projects.projectCheckID}</p>
-							</div>
-						</Link>
+					<div className="align-middle justify-center  rounded-lg shadow md:flex-row shrink items-center bg-white border border-gray-200  hover:bg-hover dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700" key={projects.projectCheckID}>
+						<div className="m-1">
+						<img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" 
+						className="h-20 rounded-t-lg  md:rounded-lg border"  />
+								<h1 className="text-m   text-black dark:text-white">
+									{projects.title}
+									</h1>
+									</div>
 					</div>
+					</Link>
+					</>
 				);
 			})}
+			</div>
 			<Routes>
 				<Route path="/project/:id" element={<CommentProject />} />
 			</Routes>
