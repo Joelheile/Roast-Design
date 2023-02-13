@@ -69,7 +69,7 @@ export default function NewProject(props) {
 						className="w-1/4 bg-primary hover:bg-primaryLight text-white font-bold py-2 px-4 rounded-2xl"
 						onClick={createProject}>Create</button>
 					</div>
-					<div class="flex flex-col w-1/2">
+					<div classN="flex flex-col w-1/2">
 						<h1 className="text-2xl mb-5 text-primary font-bold">Preview</h1>
 						<img src={previewFile} className="previewImage" />
 						
