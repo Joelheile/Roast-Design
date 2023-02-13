@@ -79,6 +79,7 @@ const CommentProject = (props) => {
 	const [item, setItem] = useState("");
 	const [items, setItems] = useState(
 		JSON.parse(localStorage.getItem("items")) || []
+		// TODO: Upload local storage to Firebase
 	);
 
 	const newitem = () => {
