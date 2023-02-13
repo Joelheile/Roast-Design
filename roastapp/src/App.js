@@ -9,6 +9,7 @@ import NewProject from "./components/NewProject";
 import SuccessAndCopy from "./components/SuccessAndCopy";
 import CommentProject from "./components/CommentProject";
 import styles from "./index.css";
+import NavbarEmpty from "./components/NavbarEmpty";
 
 function App() {
 	const [activeUrl, setActiveUrl] = useState("");
@@ -20,7 +21,7 @@ function App() {
 
 	return (
 		<div>
-			{activeUrl !== "/login" || "/signup" ? <Navbar /> : null}
+			<Navbar />
 
 			<Routes>
 				<Route path="/" element={<SignIn />} />

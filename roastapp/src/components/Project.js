@@ -32,7 +32,7 @@ export default function Project(props) {
 			const reference = ref(storage, projects.imageURL);
 			await getDownloadURL(reference).then((x) => {
 				// x is just parameter
-				console.log(url)
+				console.log(url);
 				setURL(x);
 			});
 		};
@@ -43,44 +43,49 @@ export default function Project(props) {
 
 	// image dimensions
 
-
 	return (
 		<div className="flex flex-col ">
 			<div className="m-auto mt-5 mb-10">
-			<button onClick={() => navigate("/project/new", { state: userID.state })}
-				className=" border border-gray-300  hover:bg-hover text-black text-m py-2 px-4 rounded-2xl p-10 "
-			>
-				Need another roast?
-			</button>
+				<button
+					onClick={() => navigate("/project/new", { state: userID.state })}
+					className=" text-m rounded-2xl  border border-gray-300 p-10 py-2 px-4 text-black hover:bg-hover "
+				>
+					Need another roast?
+				</button>
 			</div>
 			<div className="flex flex-wrap gap-5  ">
-			{projects.map((projects) => {
-				return (
-					<>
-					<Link
-							to={{
-								pathname: `/project/${projects.projectCheckID}`,
-							}}
-							state={{
-								projectCheckID: projects.projectCheckID,
-								title: projects.title,
-								imageURL: projects.imageURL,
-								userID: userID.state,
-							}}
-						>
-					<div className="align-middle justify-center  rounded-lg shadow md:flex-row shrink items-center bg-white border border-gray-200  hover:bg-hover dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700" key={projects.projectCheckID}>
-						<div className="m-1">
-						<img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" 
-						className="h-20 rounded-t-lg  md:rounded-lg border"  />
-								<h1 className="text-m   text-black dark:text-white">
-									{projects.title}
-									</h1>
+				{projects.map((projects) => {
+					return (
+						<>
+							<Link
+								to={{
+									pathname: `/project/${projects.projectCheckID}`,
+								}}
+								state={{
+									projectCheckID: projects.projectCheckID,
+									title: projects.title,
+									imageURL: projects.imageURL,
+									userID: userID.state,
+								}}
+							>
+								<div
+									className="shrink items-center  justify-center rounded-lg border border-gray-200 bg-white align-middle shadow hover:bg-hover  dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 md:flex-row"
+									key={projects.projectCheckID}
+								>
+									<div className="m-1">
+										<img
+											src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png"
+											className="h-20 rounded-t-lg  border md:rounded-lg"
+										/>
+										<h1 className="text-m   text-black dark:text-white">
+											{projects.title}
+										</h1>
 									</div>
-					</div>
-					</Link>
-					</>
-				);
-			})}
+								</div>
+							</Link>
+						</>
+					);
+				})}
 			</div>
 			<Routes>
 				<Route path="/project/:id" element={<CommentProject />} />

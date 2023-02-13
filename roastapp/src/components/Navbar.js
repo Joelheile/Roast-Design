@@ -5,42 +5,44 @@ import { useNavigate } from "react-router-dom/dist";
 export default function Navbar() {
 	let navigate = useNavigate();
 	const signout = () => {
-        navigate('/signout');
-    }
+		navigate("/signout");
+	};
 	const projectNav = () => {
-        navigate('/project');
-    }
+		navigate("/project");
+	};
 
 	return (
-		<div className="bg-white border-solid border-2 border-gray-200 px-2 sm:px-4 py-2.5 rounded mb-5" >
-		<nav className="container flex flex-wrap items-center justify-between mx-auto">
-			<Link to="/project" className="text-xl font-bold">
-				Roast.design
-			</Link>
-			<button className="bg-primary hover:bg-primaryLight text-white font-bold py-2 px-4 rounded" onClick={projectNav}>
-				All projects
-			</button>
-			<button className=" text-black font-bold py-2 px-4 rounded display: block" onClick={signout}>
-			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hover:text-primaryLight">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-</svg>		
-			</button>
-		</nav>
-
+		<div className="mb-5 rounded border-2 border-solid border-gray-200 bg-white px-2 py-2.5 sm:px-4">
+			<nav className="container mx-auto flex flex-wrap items-center justify-between">
+				<Link to="/project" className="text-xl font-bold">
+					Roast.design
+				</Link>
+				<button
+					className="rounded bg-primary py-2 px-4 font-bold text-white hover:bg-primaryLight"
+					onClick={projectNav}
+				>
+					All projects
+				</button>
+				<button
+					className=" display: block rounded py-2 px-4 font-bold text-black"
+					onClick={signout}
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						class="h-6 w-6 hover:text-primaryLight"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+						/>
+					</svg>
+				</button>
+			</nav>
 		</div>
-		
-	);
-}
-
-function CustomLink({ to, children, ...props }) {
-	const resolvedPath = useResolvedPath(to);
-	const isActive = useMatch({ path: resolvedPath.pathname, end: true });
-
-	return (
-		<li className={isActive ? "active" : ""}>
-			<Link to={to} {...props}>
-				{children}
-			</Link>
-		</li>
 	);
 }

@@ -10,6 +10,7 @@ import {
 	doc,
 	addDoc,
 	updateDoc,
+	serverTimestamp,
 } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
@@ -77,11 +78,9 @@ const CommentProject = (props) => {
 	const commentID = v4();
 	const [item, setItem] = useState("");
 	const [items, setItems] = useState(
-		[]
-		/*JSON.parse(localStorage.getItem("items")) || [] */
+		JSON.parse(localStorage.getItem("items")) || []
 	);
-	
-	
+
 	const newitem = () => {
 		if (item.trim() !== "") {
 			const newitem = {
@@ -98,14 +97,15 @@ const CommentProject = (props) => {
 
 		// TODO: hier muss createComment hin
 		const commentsCollectionRef = collection(db, "comments");
-		
+
 		const createComment = async () => {
 			await addDoc(commentsCollectionRef, {
 				projectCheckID: data.projectCheckID,
-				content: content,
+				content: item,
 				xCoordinate: position.x.toFixed(0),
 				yCoordinate: position.y.toFixed(0),
 				commentID: commentID,
+				timestamp: serverTimestamp(),
 			});
 			console.log("Comment");
 		};
@@ -119,13 +119,19 @@ const CommentProject = (props) => {
 		}
 	};
 
-	const docUpdateRef = doc(db, "comments", commentID)
+	const docUpdateRef = doc(db, "comments", commentID);
 
 	useEffect(() => {
 		localStorage.setItem("items", JSON.stringify(items));
+		console.log(items);
+		// Firebase update
+		updateDoc(docUpdateRef, {
+			xCoordinate: position.x.toFixed(0),
+			yCoordinate: position.y.toFixed(0),
+		}).then((docUpdateRef) => {
+			console.log("it was updated");
+		});
 	}, [items]);
-
-
 
 	const updatePos = (data, index) => {
 		let newArr = [...items];
@@ -133,35 +139,37 @@ const CommentProject = (props) => {
 		setItems(newArr);
 
 		// TODO: hier muss update funktion rein
-		updateDoc(docUpdateRef, {xCoordinate: position.x.toFixed(0),
-			yCoordinate: position.y.toFixed(0),}).then(docUpdateRef => {console.log("it was updated")})
+		updateDoc(docUpdateRef, {
+			xCoordinate: position.x.toFixed(0),
+			yCoordinate: position.y.toFixed(0),
+		}).then((docUpdateRef) => {
+			console.log("it was updated");
+		});
 	};
 
 	const deleteNote = (id) => {
 		setItems(items.filter((item) => item.id !== id));
 	};
 
-	
-
-	
-
 	// end comment
 
 	return (
-		<div className="flex flex-row items-center justify-center mt-20">
-
+		<div className="mt-20 flex flex-row items-center justify-center">
 			<div>
 				<div id="new-item">
 					<input
-					className="mr-2 shrink border border-gray-300  hover:bg-hover text-black text-m py-2 px-4 rounded-2xl p-10 mb-5"
+						className="text-m mr-2 mb-5 shrink  rounded-2xl border border-gray-300 p-10 py-2 px-4 text-black hover:bg-hover"
 						value={item}
 						onChange={(e) => setItem(e.target.value)}
 						placeholder="Enter something..."
 						onKeyPress={(e) => keyPress(e)}
 					/>
-					<button 
-					className="w-auto bg-primary hover:bg-primaryLight text-white font-bold py-2 px-4 rounded-2xl"
-					onClick={newitem}>ENTER</button>
+					<button
+						className="w-auto rounded-2xl bg-primary py-2 px-4 font-bold text-white hover:bg-primaryLight"
+						onClick={newitem}
+					>
+						ENTER
+					</button>
 				</div>
 				<div id="items">
 					{items.map((item, index) => {
@@ -172,21 +180,20 @@ const CommentProject = (props) => {
 								onStop={(e, data) => {
 									updatePos(data, index);
 								}}
+								onDrag={(e, data) => trackPos(data)}
 							>
-								<div className="flex-row w-auto inline-block bg-secondary text-white rounded-xl cursor-pointer p-2.5">
+								<div className="inline-block w-auto cursor-pointer flex-row rounded-xl bg-secondary p-2.5 text-white">
 									<p style={{ margin: 0 }}>{item.item}</p>
+
 									<button id="delete" onClick={(e) => deleteNote(item.id)}>
 										X
 									</button>
-									
 								</div>
-								
 							</Draggable>
 						);
 					})}
-					
+
 					<img className="w-1/2 rounded-xl" src={url} />
-					
 				</div>
 			</div>
 		</div>
