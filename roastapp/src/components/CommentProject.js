@@ -146,7 +146,7 @@ const CommentProject = (props) => {
 		setItems(newArr);
 		*/
 
-		// TODO: Fehler bei update
+		// TODO: Fehler bei updatee
 		const docUpdateRef = doc(db, "comments", elementID);
 		// TODO: hier muss update funktion rein
 		updateDoc(docUpdateRef, {
