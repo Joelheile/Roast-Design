@@ -46,7 +46,7 @@ const CommentProject = (props) => {
 
 	// position
 
-	const [position, setPosition] = useState({ x: 0, y: 0 });
+	const [position, setPosition] = useState({});
 	const trackPos = (data) => {
 		setPosition({ x: data.x, y: data.y });
 	};
@@ -131,30 +131,28 @@ const CommentProject = (props) => {
 
 
 	const updatePos = (e, data) => {
+		console.log("event:" + e);
+		console.log("data:" + data);
 		let elementPosition = {...position}
 		const elementID = e.target.id;
 		elementPosition[elementID] = {};
 		elementPosition[elementID]["x"] = data.x;
 		elementPosition[elementID]["y"] = data.y;
 		setPosition(elementPosition)
-		console.log("x" + data.x + ", y" + data.y)
+		console.log("x" + data.x + ", y" + data.y + " ID" + elementID)
 		const elementX = data.x;
 		const elementY = data.y;
+
+		// ! Commentare in subcollections und diese bei update löschen und neu hochladen?
+		// ? Oder Array vom local storage direkt hochladen
+
 		/*
 		let newArr = [...items];
 		newArr[index].defaultPos = { x: data.x, y: data.y };
 		setItems(newArr);
 		*/
 
-		// TODO: Fehler bei updatee
-		const docUpdateRef = doc(db, "comments", elementID);
-		// TODO: hier muss update funktion rein
-		updateDoc(docUpdateRef, {
-			xCoordinate: elementX,
-			yCoordinate: elementY,
-		}).then((docUpdateRef) => {
-			console.log("it was updated");
-		});
+		
 	};
 
 	const deleteNote = (id) => {
@@ -188,8 +186,8 @@ const CommentProject = (props) => {
 								key={item.id}
 								defaultPosition={item.defaultPos}
 								onStop={updatePos}
-								
-								onDrag={(e, data) => trackPos(data)}
+
+								onDrag={trackPos}
 							>
 								<div className="inline-block w-auto cursor-pointer flex-row rounded-xl bg-secondary p-2.5 text-white">
 									<p style={{ margin: 0 }}>{item.item}</p>
