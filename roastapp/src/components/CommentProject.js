@@ -120,29 +120,38 @@ const CommentProject = (props) => {
 		}
 	};
 
-	const docUpdateRef = doc(db, "comments", commentID);
+	
 
 	useEffect(() => {
-		localStorage.setItem("items", JSON.stringify(items));
+		localStorage.setItem("items", JSON.stringify(items))
 		console.log(items);
-		// Firebase update
-		updateDoc(docUpdateRef, {
-			xCoordinate: position.x.toFixed(0),
-			yCoordinate: position.y.toFixed(0),
-		}).then((docUpdateRef) => {
-			console.log("it was updated");
-		});
+		// Firebase update project => not comments => Array for comments inside of projects folder as json
+		
 	}, [items]);
 
-	const updatePos = (data, index) => {
+
+	const updatePos = (e, data) => {
+		let elementPosition = {...position}
+		const elementID = e.target.id;
+		elementPosition[elementID] = {};
+		elementPosition[elementID]["x"] = data.x;
+		elementPosition[elementID]["y"] = data.y;
+		setPosition(elementPosition)
+		console.log("x" + data.x + ", y" + data.y)
+		const elementX = data.x;
+		const elementY = data.y;
+		/*
 		let newArr = [...items];
 		newArr[index].defaultPos = { x: data.x, y: data.y };
 		setItems(newArr);
+		*/
 
+		// TODO: Fehler bei update
+		const docUpdateRef = doc(db, "comments", elementID);
 		// TODO: hier muss update funktion rein
 		updateDoc(docUpdateRef, {
-			xCoordinate: position.x.toFixed(0),
-			yCoordinate: position.y.toFixed(0),
+			xCoordinate: elementX,
+			yCoordinate: elementY,
 		}).then((docUpdateRef) => {
 			console.log("it was updated");
 		});
@@ -178,14 +187,13 @@ const CommentProject = (props) => {
 							<Draggable
 								key={item.id}
 								defaultPosition={item.defaultPos}
-								onStop={(e, data) => {
-									updatePos(data, index);
-								}}
+								onStop={updatePos}
+								
 								onDrag={(e, data) => trackPos(data)}
 							>
 								<div className="inline-block w-auto cursor-pointer flex-row rounded-xl bg-secondary p-2.5 text-white">
 									<p style={{ margin: 0 }}>{item.item}</p>
-
+								
 									<button id="delete" onClick={(e) => deleteNote(item.id)}>
 										X
 									</button>
