@@ -21,6 +21,7 @@ import Draggable from "react-draggable";
 import firebase from "firebase/app";
 import "firebase/storage";
 import { v4 } from "uuid";
+import "../styles/speechbubble.css"
 
 const CommentProject = (props) => {
 	const location = useLocation(); // get userID from sign in / sign up
@@ -95,7 +96,7 @@ const CommentProject = (props) => {
 			alert("Enter a item");
 			setItem("");
 		}
-
+		
 		// TODO: hier muss createComment hin
 		const commentsCollectionRef = collection(db, "comments");
 
@@ -124,15 +125,18 @@ const CommentProject = (props) => {
 
 	useEffect(() => {
 		localStorage.setItem("items", JSON.stringify(items))
-		console.log(items);
+		
+		console.log("iteM" +  item)
+		console.log("itemS:" + items);
 		// Firebase update project => not comments => Array for comments inside of projects folder as json
 		
 	}, [items]);
 
 
-	const updatePos = (e, data) => {
+	const updatePos = (e, data, id) => {
 		console.log("event:" + e);
 		console.log("data:" + data);
+		console.log("ID: " + position)
 		let elementPosition = {...position}
 		const elementID = e.target.id;
 		elementPosition[elementID] = {};
@@ -143,8 +147,12 @@ const CommentProject = (props) => {
 		const elementX = data.x;
 		const elementY = data.y;
 
+
+
+
 		// ! Commentare in subcollections und diese bei update löschen und neu hochladen?
-		// ? Oder Array vom local storage direkt hochladen
+		// ! Oder Array vom local storage direkt hochladen
+		// ? außerdem project ID noch in local storage packen, damit nur die richtigen kommentare übernommen werden :)
 
 		/*
 		let newArr = [...items];
@@ -189,12 +197,14 @@ const CommentProject = (props) => {
 
 								onDrag={trackPos}
 							>
-								<div className="inline-block w-auto cursor-pointer flex-row rounded-xl bg-secondary p-2.5 text-white">
+								<div className="inline-block w-auto cursor-pointer flex-row rounded-xl p-5 text-white">
+									<div className="speech-bubble">
 									<p style={{ margin: 0 }}>{item.item}</p>
 								
 									<button id="delete" onClick={(e) => deleteNote(item.id)}>
 										X
 									</button>
+									</div>
 								</div>
 							</Draggable>
 						);
@@ -212,6 +222,6 @@ export default CommentProject;
 ZUM DRAUF ZUGREIFEN:
 	projectCheckID: projects.projectCheckID,
 								title: projects.title,
-								imageURL: projects.imageURL,
 								userID: userID.state,
+								imageURL: projects.imageURL,
 */
