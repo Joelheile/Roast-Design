@@ -71,7 +71,7 @@ export default function NewProject(props) {
 					</div>
 					<div classN="flex flex-col w-1/2">
 						<h1 className="text-2xl mb-5 text-primary font-bold">Preview</h1>
-						<img src={previewFile} className="previewImage" />
+						<img src={previewFile} className="h-screen max-h-[60vh]" />
 						
 					</div>
 				
