@@ -20,15 +20,13 @@ export default function Project(props) {
 
 	const [url, setURL] = useState();
 
-	
-
 	useEffect(() => {
 		// called when page renders
 
 		const getProjects = async () => {
 			const data = await getDocs(projectsCollectionRef);
 			setProjects(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))); // we only want name and id
-			console.log("PROJECTS" + projects)
+			console.log("PROJECTS" + projects);
 		};
 		const func = async () => {
 			const reference = ref(storage, projects.imageURL);
@@ -40,14 +38,12 @@ export default function Project(props) {
 		func();
 		getProjects();
 	}, []);
-	
+
 	// image dimensions
-	const [state, setState ] = useState([]);
-
-
+	const [state, setState] = useState([]);
 
 	return (
-		<div className="flex flex-col ml-10">
+		<div className="ml-10 flex flex-col">
 			<div className="m-auto mt-5 mb-10">
 				<button
 					onClick={() => navigate("/project/new", { state: userID.state })}
@@ -72,16 +68,14 @@ export default function Project(props) {
 								}}
 							>
 								<div
-									className="shrink items-center  justify-center rounded-2xl border border-gray-200 bg-white align-middle shadow hover:bg-hover  md:flex-column"
+									className="md:flex-column shrink  items-center justify-center rounded-2xl border border-gray-200 bg-white align-middle shadow  hover:bg-hover"
 									key={projects.projectCheckID}
 								>
 									<div className="m-5">
-									
 										<h1 className="text-m   text-white dark:text-black">
 											{projects.title}
 										</h1>
 									</div>
-									
 								</div>
 							</Link>
 						</>
