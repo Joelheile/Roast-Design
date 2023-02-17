@@ -30,9 +30,9 @@ const CommentProject = (props) => {
 	let navigate = useNavigate();
 
 	const { id } = useParams();
-	const [url, setURL] = useState();
 	const [content, setContent] = useState([]);
 
+	const [url, setURL] = useState();
 	useEffect(() => {
 		// one time loading
 		const func = async () => {
@@ -170,7 +170,10 @@ const CommentProject = (props) => {
 	// end comment
 
 	return (
-		<div className="mt-10 flex flex-row items-center justify-center">
+		<div className="flex">
+		<div 
+		// links
+		className="mt-10 flex flex-row items-center justify-center w-3/4">
 			<div>
 				<div id="new-item">
 					<input
@@ -217,9 +220,42 @@ const CommentProject = (props) => {
 				</div>
 			</div>
 		</div>
+		<div
+		// rechts
+		className="border-solid border-2  w-1/4">
+					<div 
+					// ganz oben
+					className="flex flex-row border-2 ">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+</svg>
+<form className="bg-primaryLighter">
+  <label >
+    <input type="text" name="Search" placeholder="Search" />
+  </label>
+</form>
+
+
+					</div>
+					{items.map((item, index) => {
+						return (
+							<>
+							<h1>
+								
+								</h1></>
+							
+						);
+					})}
+
+
+
+		</div>
+		</div>
 	);
 };
 export default CommentProject;
+
+
 
 /*
 ZUM DRAUF ZUGREIFEN:
