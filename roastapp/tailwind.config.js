@@ -12,9 +12,9 @@ module.exports = {
 			colors: {
 				transparent: "transparent",
 				hover: "#f5f5f5",
-				primary: "#2F3C7E",
-				primaryLight: "#8AAAE5",
-				primaryLighter: "#97bbfc",
+				primary: "#4D47C3",
+				primaryLight: "#F0EFFF",
+				primaryMid: "#A7A3FF",
 				secondary: "#EEA47FFF",
 				neutral: "#FCF6F5FF",
 				black: "#1a1a1a",
@@ -23,8 +23,8 @@ module.exports = {
 				// https://webflow.com/blog/best-color-combinations
 			},
 			fontFamily: {
-				sans: ["Graphik", "sans-serif"],
-				serif: ["Merriweather", "serif"],
+				sans: ["Poppins", "sans-serif"],
+				dongle: ["Dongle", "sans-serif"],
 			},
 			spacing: {
 				"8xl": "96rem",

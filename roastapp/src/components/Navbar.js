@@ -12,17 +12,34 @@ export default function Navbar() {
 	};
 
 	return (
-		<div className="mb-5 rounded border-2 border-solid border-gray-200 bg-white px-2 py-2.5 sm:px-4">
+		<div className="mb-5  bg-primary px-2 py-2.5 ">
 			<nav className="container mx-auto flex flex-wrap items-center justify-between">
-				<Link to="/project" className="text-xl font-bold">
+				<Link
+					to="/project"
+					className="font-dongle text-5xl font-bold text-white"
+				>
 					Roast.design
 				</Link>
-				<button
-					className="rounded bg-primary py-2 px-4 font-bold text-white hover:bg-primaryLight"
-					onClick={projectNav}
-				>
-					All projects
-				</button>
+				<div>
+					<button
+						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryMid"
+						onClick={projectNav}
+					>
+						new roast
+					</button>
+					<button
+						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryMid"
+						onClick={projectNav}
+					>
+						projects
+					</button>
+					<button
+						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryMid"
+						onClick={projectNav}
+					>
+						community
+					</button>
+				</div>
 				<button
 					className=" display: block rounded py-2 px-4 font-bold text-black"
 					onClick={signout}
@@ -33,7 +50,7 @@ export default function Navbar() {
 						viewBox="0 0 24 24"
 						stroke-width="1.5"
 						stroke="currentColor"
-						class="h-6 w-6 hover:text-primaryLight"
+						class="h-6 w-6 text-white hover:text-primaryLight"
 					>
 						<path
 							stroke-linecap="round"
