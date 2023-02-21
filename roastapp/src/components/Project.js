@@ -1,4 +1,11 @@
-import { collection, deleteDoc, getDocs, doc } from "firebase/firestore";
+import {
+	collection,
+	deleteDoc,
+	getDocs,
+	doc,
+	query,
+	where,
+} from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -24,9 +31,13 @@ export default function Project(props) {
 		// called when page renders
 
 		const getProjects = async () => {
-			const data = await getDocs(projectsCollectionRef);
-			setProjects(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))); // we only want name and id
-			console.log("PROJECTS" + data);
+			const q = query(
+				collection(db, "projects"),
+				where("userID", "==", userID.state)
+			);
+
+			const data = await getDocs(q);
+			setProjects(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 		};
 
 		getProjects();
