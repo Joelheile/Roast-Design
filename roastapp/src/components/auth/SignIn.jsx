@@ -25,6 +25,15 @@ const SignIn = () => {
 		navigate("/signup");
 	};
 
+	const [passwordShown, setPasswordShown] = useState(false);
+
+	// Password toggle handler
+	const togglePassword = () => {
+		// When the handler is invoked
+		// inverse the boolean state of passwordShown
+		setPasswordShown(!passwordShown);
+	};
+
 	return (
 		// left and right split
 		<div>
@@ -33,52 +42,45 @@ const SignIn = () => {
 			></div>
 			<div class="flex w-screen  items-center justify-center ">
 				<form class="mb-4  rounded bg-white px-8 pt-6 pb-8">
-					<div class="mb-4 ">
-						<label
-							class="mb-2 block text-sm font-bold text-gray-700"
-							for="username"
-						>
-							Username
-						</label>
+					<div class="mb-4">
+						<h1 className=" mb-5 text-xl font-semibold">Sign in</h1>
+
 						<input
-							class="focus:shadow-outline appearance-none rounded border  py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+							class="focus:shadow-outline text-gr appearance-none  rounded-md  bg-primaryLight p-2 py-2  px-3 focus:outline-none "
 							id="username"
 							type="text"
-							placeholder="Enter your email"
+							placeholder="Enter E-Mail"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 						/>
 					</div>
 					<div class="mb-6">
-						<label
-							class="mb-2 block text-sm font-bold text-gray-700"
-							for="password"
-						>
-							Password
-						</label>
 						<input
-							class="focus:shadow-outline mb-3 appearance-none  rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+							class="focus:shadow-outline text-gr appearance-none  rounded-md  bg-primaryLight p-2 py-2  px-3 focus:outline-none "
 							id="password"
 							type="password"
-							placeholder="Enter your password"
+							placeholder="Enter Password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
-					<div class="flex items-center justify-between">
-						<button
-							class="focus:shadow-outline rounded bg-primary py-2 px-4 font-bold text-white hover:bg-primaryLight focus:outline-none"
-							type="button"
-							onClick={signIn}
-						>
-							Sign In
-						</button>
+					<div>
 						<a
-							class="inline-block align-baseline text-sm font-bold text-primary hover:text-primaryLight"
+							class="inline-block align-baseline text-sm font-bold text-primary hover:text-primaryMid"
 							onClick={signUpNav}
 						>
 							No account?
 						</a>
+						<a>Forgot password?</a>
+					</div>
+					<div class="flex items-center justify-between">
+						<button
+							class="focus:shadow-outline mt-5 rounded bg-primary py-2 px-4 text-sm text-white hover:bg-primaryMid focus:outline-none"
+							type="button"
+							onClick={signIn}
+						>
+							Login
+						</button>
 					</div>
 				</form>
 			</div>

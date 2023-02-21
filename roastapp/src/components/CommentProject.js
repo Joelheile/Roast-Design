@@ -12,7 +12,7 @@ import {
 	updateDoc,
 	serverTimestamp,
 } from "firebase/firestore";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { db, storage } from "../firebase";
@@ -72,14 +72,18 @@ const CommentProject = (props) => {
 	};
 	useEffect(() => {
 		loadImage(setImageDimensions, imageUrl);
-		console.log(imageDimensions);
 	}, []);
 
 	// create comment
+	// classe mit setstate
+	// classe setstate übergeben
+	// classe fetch übergeben
+	// firestore stream
+
 	const commentID = v4();
 	const [item, setItem] = useState("");
 	const [items, setItems] = useState(
-		JSON.parse(localStorage.getItem("items")) || []
+		JSON.parse(localStorage.getItem(`items-${data.projectCheckID}`)) || []
 		// TODO: Upload local storage to Firebase
 	);
 
@@ -121,8 +125,13 @@ const CommentProject = (props) => {
 		}
 	};
 
+	// eine classe zum fetchen
+	// eine classe zum persistierten => speichern
+
+	useCallback(() => {});
+
 	useEffect(() => {
-		localStorage.setItem("items", JSON.stringify(items));
+		localStorage.setItem(`items-${data.projectCheckID}`, JSON.stringify(items));
 
 		console.log("iteM" + item);
 		console.log("itemS:" + items);

@@ -45,13 +45,19 @@ export default function Project(props) {
 	return (
 		<div className="ml-10 flex flex-col">
 			<div className="m-auto mt-5 mb-10">
-				<button
-					onClick={() => navigate("/project/new", { state: userID.state })}
-					className=" text-m rounded-2xl  border border-gray-300 p-10 py-2 px-4 text-black hover:bg-hover "
-				>
-					Need another roast?
-				</button>
+				<div class="inline-flex h-80 w-80 flex-col items-center justify-start">
+					<p class="font-dongle text-9xl text-gray-900">roast</p>
+					<p class="mb-10 text-2xl text-gray-900">/maxmustermann</p>
+
+					<button
+						onClick={() => navigate("/project/new", { state: userID.state })}
+						className="h-16 w-full rounded-full border-2 border-primary border-opacity-20 bg-primaryLight text-primary "
+					>
+						Need another roast?
+					</button>
+				</div>
 			</div>
+			<h2>Projects</h2>
 			<div className="flex flex-wrap gap-5  ">
 				{projects.map((projects) => {
 					return (
@@ -72,9 +78,7 @@ export default function Project(props) {
 									key={projects.projectCheckID}
 								>
 									<div className="m-5">
-										<h1 className="text-m   text-white dark:text-black">
-											{projects.title}
-										</h1>
+										<h1 className="text-m   text-black ">{projects.title}</h1>
 									</div>
 								</div>
 							</Link>

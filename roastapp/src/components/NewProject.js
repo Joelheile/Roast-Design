@@ -9,7 +9,7 @@ import { v4 } from "uuid";
 
 export default function NewProject(props) {
 	let navigate = useNavigate();
-	const [newProject, setNewProject] = useState("");
+	const [webUrl, setWebUrl] = useState("");
 	const [imageUrls, setImageUrls] = useState([]);
 	const [previewFile, setPreviewFile] = useState();
 
@@ -32,50 +32,62 @@ export default function NewProject(props) {
 		});
 
 		await addDoc(projectsCollectionRef, {
-			title: newProject,
+			title: webUrl,
 			userID: userID.state,
 			projectCheckID: projectCheckID,
 			imageURL: imageRef.fullPath,
 		});
-		console.log("Title" + newProject);
 
 		navigate("/success", { state: projectCheckID });
 	};
+	// webview
 
 	return (
-		<div className="flex grid grid-cols-2 items-center justify-center h-screen">
-			
-				
-					<div class="flex flex-col w-1/2 m-auto justify-center ">
-						<h1 className="text-2xl mb-5 text-primary font-bold">New Roast</h1>
-						<input className="shrink border border-gray-300  hover:bg-hover text-black text-m py-2 px-4 rounded-2xl p-10 mb-5"
-							placeholder="Title"
-							onChange={(event) => {
-								setNewProject(event.target.value);
-							}}
-						/>
-						
-						<input
-						className="mb-12 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primaryLight file:bg-primary hover:file:bg-primaryLighter"
-							type="file"
-							onChange={(event) => {
-								setImageUpload(event.target.files[0]);
-								setPreviewFile(URL.createObjectURL(event.target.files[0]));
-							}}
-						/>
-						
+		<div className="flex grid h-screen grid-cols-2 items-center justify-center">
+			<div class="m-auto flex w-1/2 flex-col justify-center ">
+				<h1 className="mb-5 text-2xl font-semibold text-primary">New Roast</h1>
+				<input
+					className="mb-5  rounded-full border border-primaryLight bg-primaryLight py-2 px-4 text-primaryMid placeholder-primaryMid  !outline-none focus:border-primaryLight "
+					placeholder="Insert Link"
+					onChange={(event) => {
+						setWebUrl(event.target.value);
+						console.log(webUrl.length);
+					}}
+				/>
 
-						<button 
-						className="w-1/4 bg-primary hover:bg-primaryLight text-white font-bold py-2 px-4 rounded-2xl"
-						onClick={createProject}>Create</button>
-					</div>
-					<div classN="flex flex-col w-1/2">
-						<h1 className="text-2xl mb-5 text-primary font-bold">Preview</h1>
-						<img src={previewFile} className="h-screen max-h-[60vh]" />
-						
-					</div>
-				
-			
+				<input
+					className="h-15 mb-12 block w-full text-sm text-gray-500 file:mr-4 file:rounded-full file:border-0 file:bg-primaryLight file:py-2  file:px-4 file:text-sm file:text-primaryMid hover:file:border-primaryMid"
+					type="file"
+					// button deactivate if another chosen
+					onChange={(event) => {
+						if (webUrl.length == 0) {
+							setImageUpload(event.target.files[0]);
+							setPreviewFile(URL.createObjectURL(event.target.files[0]));
+						} else {
+							alert("You've already entered a website");
+						}
+					}}
+				/>
+
+				<button
+					className="w-full rounded-2xl bg-primary py-2 px-4  text-white hover:bg-primaryMid"
+					onClick={createProject}
+				>
+					Create
+				</button>
+			</div>
+			<div className="flex w-1/2 flex-col">
+				<h1 className="mb-5 text-2xl  font-semibold text-primary">Preview</h1>
+				<img src={previewFile} className="h-screen max-h-[60vh]" />
+				<br></br>
+				<iframe
+					src={webUrl}
+					width={1000}
+					height={500}
+					sandbox="allow-scripts allow-modal"
+					loading="eager"
+				></iframe>
+			</div>
 		</div>
 	);
 }

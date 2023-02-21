@@ -10,6 +10,9 @@ export default function Navbar() {
 	const projectNav = () => {
 		navigate("/project");
 	};
+	const newProjectNav = () => {
+		navigate("/project/new");
+	};
 
 	return (
 		<div className="mb-5  bg-primary px-2 py-2.5 ">
@@ -23,7 +26,7 @@ export default function Navbar() {
 				<div>
 					<button
 						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryMid"
-						onClick={projectNav}
+						onClick={newProjectNav}
 					>
 						new roast
 					</button>
@@ -32,12 +35,6 @@ export default function Navbar() {
 						onClick={projectNav}
 					>
 						projects
-					</button>
-					<button
-						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryMid"
-						onClick={projectNav}
-					>
-						community
 					</button>
 				</div>
 				<button
