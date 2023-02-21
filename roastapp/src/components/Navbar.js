@@ -47,7 +47,7 @@ export default function Navbar() {
 						viewBox="0 0 24 24"
 						stroke-width="1.5"
 						stroke="currentColor"
-						class="h-6 w-6 text-white hover:text-primaryLight"
+						class="h-6 w-6 text-white hover:text-primaryMid"
 					>
 						<path
 							stroke-linecap="round"

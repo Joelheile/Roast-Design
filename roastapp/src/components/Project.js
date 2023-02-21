@@ -18,7 +18,7 @@ export default function Project(props) {
 	let navigate = useNavigate();
 	console.log(userID.state);
 
-	const [url, setURL] = useState();
+	const [url, setURL] = useState("");
 
 	useEffect(() => {
 		// called when page renders
@@ -26,16 +26,9 @@ export default function Project(props) {
 		const getProjects = async () => {
 			const data = await getDocs(projectsCollectionRef);
 			setProjects(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))); // we only want name and id
-			console.log("PROJECTS" + projects);
+			console.log("PROJECTS" + data);
 		};
-		const func = async () => {
-			const reference = ref(storage, projects.imageURL);
-			await getDownloadURL(reference).then((x) => {
-				// x is just parameter
-				setURL(x);
-			});
-		};
-		func();
+
 		getProjects();
 	}, []);
 
@@ -77,8 +70,13 @@ export default function Project(props) {
 									className="md:flex-column shrink  items-center justify-center rounded-2xl border border-gray-200 bg-white align-middle shadow  hover:bg-hover"
 									key={projects.projectCheckID}
 								>
-									<div className="m-5">
+									<div className="">
 										<h1 className="text-m   text-black ">{projects.title}</h1>
+
+										<img
+											className="w-40 rounded-2xl"
+											src={projects.localImageURL}
+										/>
 									</div>
 								</div>
 							</Link>

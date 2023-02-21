@@ -125,17 +125,8 @@ const CommentProject = (props) => {
 		}
 	};
 
-	// eine classe zum fetchen
-	// eine classe zum persistierten => speichern
-
-	useCallback(() => {});
-
 	useEffect(() => {
 		localStorage.setItem(`items-${data.projectCheckID}`, JSON.stringify(items));
-
-		console.log("iteM" + item);
-		console.log("itemS:" + items);
-		// Firebase update project => not comments => Array for comments inside of projects folder as json
 	}, [items]);
 
 	const updatePos = (e, data, id) => {
@@ -151,16 +142,6 @@ const CommentProject = (props) => {
 		console.log("x" + data.x + ", y" + data.y + " ID" + elementID);
 		const elementX = data.x;
 		const elementY = data.y;
-
-		// ! Commentare in subcollections und diese bei update löschen und neu hochladen?
-		// ! Oder Array vom local storage direkt hochladen
-		// ? außerdem project ID noch in local storage packen, damit nur die richtigen kommentare übernommen werden :)
-
-		/*
-		let newArr = [...items];
-		newArr[index].defaultPos = { x: data.x, y: data.y };
-		setItems(newArr);
-		*/
 	};
 
 	const deleteNote = (id) => {

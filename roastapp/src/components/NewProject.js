@@ -1,5 +1,5 @@
 import { collection, getDocs, addDoc } from "firebase/firestore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //import "../styles.css";
 import { db } from "../firebase";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -17,8 +17,13 @@ export default function NewProject(props) {
 	const userID = useLocation(); // get userID passed from dashboard
 	const projectCheckID = v4();
 
-	const [imageUpload, setImageUpload] = useState(null);
+	const [projectImages, setProjectImages] = useState(
+		JSON.parse(localStorage.getItem(`projectImages-${projectCheckID}`)) || []
+		// TODO: Upload local storage to Firebase
+	);
 
+	const [imageUpload, setImageUpload] = useState(null);
+	const localImageURL = "";
 	const createProject = async () => {
 		if (imageUpload == null) return; // when nothing selected then nothing
 		const imageRef = ref(
@@ -32,15 +37,17 @@ export default function NewProject(props) {
 		});
 
 		await addDoc(projectsCollectionRef, {
-			title: webUrl,
+			webUrl: webUrl,
 			userID: userID.state,
 			projectCheckID: projectCheckID,
 			imageURL: imageRef.fullPath,
+			localImageURL: `${previewFile}`,
 		});
 
 		navigate("/success", { state: projectCheckID });
 	};
-	// webview
+
+	// TODO: Localstorage, um image zu speichern, die man dann abbilden kann mit ID
 
 	return (
 		<div className="flex grid h-screen grid-cols-2 items-center justify-center">
