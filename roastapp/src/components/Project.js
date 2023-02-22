@@ -19,6 +19,7 @@ import CommentProject from "./CommentProject";
 
 export default function Project(props) {
 	const [projects, setProjects] = useState([]);
+	const [user, setUser] = useState([]);
 	const projectsCollectionRef = collection(db, "projects");
 
 	const userID = useLocation(); // get userID from sign in / sign up
@@ -39,7 +40,12 @@ export default function Project(props) {
 			const data = await getDocs(q);
 			setProjects(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 		};
-
+		const getUser = async () => {
+			const q = query(
+				collection(db, "users"),
+				where("userID", "==", userID.state)
+			);
+		};
 		getProjects();
 	}, []);
 
@@ -51,7 +57,9 @@ export default function Project(props) {
 			<div className="m-auto mt-5 mb-10">
 				<div class="inline-flex h-80 w-80 flex-col items-center justify-start">
 					<p class="font-dongle text-9xl text-gray-900">roast it!</p>
-					<p class="mb-10 text-2xl text-gray-900">/maxmustermann</p>
+					<p class="mb-10 text-2xl text-gray-900">
+						{/*HIER KOMMT USERNAME REIN, der eigentlich abgefragt wird*/}
+					</p>
 
 					{/*animated button*/}
 					<button

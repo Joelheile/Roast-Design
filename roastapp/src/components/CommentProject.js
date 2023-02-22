@@ -22,6 +22,12 @@ import firebase from "firebase/app";
 import "firebase/storage";
 import { v4 } from "uuid";
 import "../styles/speechbubble.css";
+import {
+	Alert,
+	AlertDescription,
+	AlertIcon,
+	AlertTitle,
+} from "@chakra-ui/react";
 
 const CommentProject = (props) => {
 	const location = useLocation(); // get userID from sign in / sign up
@@ -159,14 +165,14 @@ const CommentProject = (props) => {
 				<div>
 					<div id="new-item">
 						<input
-							className="text-m mr-2 mb-5 shrink  rounded-2xl border border-gray-300 p-10 py-2 px-4 text-black hover:bg-hover"
+							className="text-m mr-2 mb-5 shrink rounded-2xl  border border-gray-300 p-10 py-2 px-4 text-black outline-none hover:bg-hover"
 							value={item}
 							onChange={(e) => setItem(e.target.value)}
 							placeholder="Enter something..."
 							onKeyPress={(e) => keyPress(e)}
 						/>
 						<button
-							className="w-auto rounded-2xl bg-primary py-2 px-4 font-bold text-white hover:bg-primaryLight"
+							className="w-auto rounded-2xl bg-primary py-2 px-4 font-bold text-white hover:bg-primaryHover"
 							onClick={newitem}
 						>
 							ENTER
@@ -181,68 +187,39 @@ const CommentProject = (props) => {
 									onStop={updatePos}
 									onDrag={trackPos}
 								>
-									<div className="inline-block w-auto cursor-pointer flex-row rounded-xl p-5 text-white">
-										<div className="speech-bubble">
-											<p style={{ margin: 0 }}>{item.item}</p>
-
-											<button id="delete" onClick={(e) => deleteNote(item.id)}>
-												<svg
-													xmlns="http://www.w3.org/2000/svg"
-													fill="none"
-													viewBox="0 0 24 24"
-													strokeWidth={1.5}
-													stroke="currentColor"
-													className="h-6 w-6"
-												>
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-													/>
-												</svg>
-											</button>
+									<button
+										id="delete"
+										onDoubleClick={(e) => deleteNote(item.id)}
+									>
+										<div className="inline-block w-auto cursor-pointer flex-row rounded-xl p-5 text-white">
+											<div className="speech-bubble">
+												<p style={{ margin: 0 }}>{item.item}</p>
+											</div>
 										</div>
-									</div>
+									</button>
 								</Draggable>
 							);
 						})}
 
 						<img className="h-screen max-h-[60vh] rounded-xl" src={url} />
 					</div>
+					<div className="mt-5 ml-48 flex w-96">
+						<Alert status="info">
+							<AlertIcon />
+							Double click to delete a comment
+						</Alert>
+					</div>
 				</div>
 			</div>
 			<div
 				// rechts
-				className="border-1.5 w-1/4  border-solid"
+				className="border-1.5 m-4 mr-20  w-1/4 border-solid"
 			>
-				<div
-					// ganz oben
-					className="flex flex-row border-2"
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						strokeWidth={1.5}
-						stroke="currentColor"
-						className="h-6 w-6"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-						/>
-					</svg>
-					<form>
-						<label>
-							<input type="text" name="Search" placeholder="Search" />
-						</label>
-					</form>
-				</div>
+				<h2 className="mb-6 text-3xl font-medium text-primary">Feed Design</h2>
 				{items.map((item, index) => {
 					return (
 						<>
-							<div className="md:flex-column m-4 items-center justify-center rounded-2xl border border-gray-200 bg-white align-middle shadow  hover:bg-hover">
+							<div className="md:flex-column  items-center justify-center rounded-2xl border border-primaryLight bg-primaryLight align-middle shadow ">
 								<div className="m-3">
 									<p>{item.item}</p>
 								</div>
