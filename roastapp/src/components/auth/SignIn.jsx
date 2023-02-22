@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { auth } from "../../firebase";
 import styles from "../../index.css";
+import Team from "../../assets/Team.svg";
 
 const SignIn = () => {
 	let navigate = useNavigate();
@@ -36,17 +37,27 @@ const SignIn = () => {
 
 	return (
 		// left and right split
-		<div>
+		<div className="mt-48 -ml-20 flex w-screen flex-row justify-center">
 			<div
-			// left
-			></div>
-			<div class="flex w-screen  items-center justify-center ">
-				<form class="mb-4  rounded bg-white px-8 pt-6 pb-8">
+				// left
+				className=" mr-48 inline-flex  flex-col"
+			>
+				<div className="flex flex-col items-start justify-end">
+					<h1 className="mb-3 text-3xl font-bold">Welcome dear roaster.</h1>
+					<h3>We don't add comments. People do.</h3>
+					<h3>Get better feedback directly on your media</h3>
+				</div>
+				<div></div>
+			</div>
+			<div class="ml-48 flex">
+				<form class="mb-4 flex flex-col rounded bg-white ">
 					<div class="mb-4">
-						<h1 className=" mb-5 text-xl font-semibold">Sign in</h1>
+						<h1 className=" mb-5 text-2xl font-semibold text-primary">
+							Sign in
+						</h1>
 
 						<input
-							class="focus:shadow-outline text-gr appearance-none  rounded-md  bg-primaryLight p-2 py-2  px-3 focus:outline-none "
+							className="focus:shadow-outline w-72 rounded-md bg-primaryLight p-3 py-3  px-3 placeholder-primaryMid outline-none transition-all duration-300 ease-in-out hover:w-80"
 							id="username"
 							type="text"
 							placeholder="Enter E-Mail"
@@ -56,7 +67,7 @@ const SignIn = () => {
 					</div>
 					<div class="mb-6">
 						<input
-							class="focus:shadow-outline text-gr appearance-none  rounded-md  bg-primaryLight p-2 py-2  px-3 focus:outline-none "
+							className="focus:shadow-outline w-72 rounded-md bg-primaryLight p-3 py-3  px-3 placeholder-primaryMid outline-none transition-all duration-300 ease-in-out hover:w-80"
 							id="password"
 							type="password"
 							placeholder="Enter Password"
@@ -64,18 +75,20 @@ const SignIn = () => {
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
-					<div>
+					<div className="flex flex-row justify-between">
 						<a
-							class="inline-block align-baseline text-sm font-bold text-primary hover:text-primaryMid"
+							class="inline-block align-baseline text-sm text-primary hover:text-primaryHover"
 							onClick={signUpNav}
 						>
 							No account?
 						</a>
-						<a>Forgot password?</a>
+						<a class="inline-block align-baseline text-sm text-darkgrey hover:text-primaryHover">
+							Forgot password?
+						</a>
 					</div>
 					<div class="flex items-center justify-between">
 						<button
-							class="focus:shadow-outline mt-5 rounded bg-primary py-2 px-4 text-sm text-white hover:bg-primaryMid focus:outline-none"
+							class="focus:shadow-outline mt-10 h-10 w-full rounded bg-primary py-2 px-4 text-sm text-white transition-all duration-300 hover:h-12  focus:outline-none"
 							type="button"
 							onClick={signIn}
 						>
