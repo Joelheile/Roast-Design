@@ -53,11 +53,32 @@ export default function Project(props) {
 					<p class="font-dongle text-9xl text-gray-900">roast</p>
 					<p class="mb-10 text-2xl text-gray-900">/maxmustermann</p>
 
+					{/*animated button*/}
 					<button
 						onClick={() => navigate("/project/new", { state: userID.state })}
-						className="h-16 w-full rounded-full border-2 border-primary border-opacity-20 bg-primaryLight text-primary "
+						href="#_"
+						class="group relative inline-flex w-48 items-center justify-center overflow-hidden rounded-full border-2 border-primaryMid bg-primaryLight p-4 px-6 py-3 font-medium text-primaryMid shadow-md transition duration-300 ease-out"
 					>
-						Need another roast?
+						<span class="ease absolute inset-0 flex h-full w-full -translate-x-full items-center justify-center bg-primaryMid text-white duration-300 group-hover:translate-x-0">
+							<svg
+								class="h-6 w-6"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M14 5l7 7m0 0l-7 7m7-7H3"
+								></path>
+							</svg>
+						</span>
+						<span class="ease absolute flex h-full w-full transform items-center justify-center text-primary transition-all duration-300 group-hover:translate-x-full">
+							Need another roast?
+						</span>
+						<span class="invisible relative">Button Text</span>
 					</button>
 				</div>
 			</div>

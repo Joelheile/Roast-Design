@@ -25,13 +25,13 @@ export default function Navbar() {
 				</Link>
 				<div>
 					<button
-						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryMid"
+						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryHover"
 						onClick={newProjectNav}
 					>
 						new roast
 					</button>
 					<button
-						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryMid"
+						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryHover"
 						onClick={projectNav}
 					>
 						projects

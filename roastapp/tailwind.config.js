@@ -15,7 +15,7 @@ module.exports = {
 				primary: "#4D47C3",
 				primaryLight: "#F0EFFF",
 				primaryMid: "#A7A3FF",
-				primaryHover: "#2c2873",
+				primaryHover: "#534cd4",
 				secondary: "#EEA47FFF",
 				neutral: "#FCF6F5FF",
 				black: "#1a1a1a",
