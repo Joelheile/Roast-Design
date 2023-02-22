@@ -16,7 +16,7 @@ export default function Navbar() {
 
 	return (
 		<div className="mb-5  bg-primary px-2 py-2.5 ">
-			<nav className="container mx-auto flex flex-wrap items-center justify-between">
+			<nav className="container mx-auto ml-32 flex flex-wrap items-center justify-between">
 				<Link
 					to="/project"
 					className="font-dongle text-5xl font-bold text-white"
@@ -26,15 +26,15 @@ export default function Navbar() {
 				<div>
 					<button
 						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryHover"
-						onClick={newProjectNav}
-					>
-						new roast
-					</button>
-					<button
-						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryHover"
 						onClick={projectNav}
 					>
 						projects
+					</button>
+					<button
+						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryHover"
+						onClick={newProjectNav}
+					>
+						new roast
 					</button>
 				</div>
 				<button

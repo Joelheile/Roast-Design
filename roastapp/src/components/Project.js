@@ -50,7 +50,7 @@ export default function Project(props) {
 		<div className="ml-10 flex flex-col">
 			<div className="m-auto mt-5 mb-10">
 				<div class="inline-flex h-80 w-80 flex-col items-center justify-start">
-					<p class="font-dongle text-9xl text-gray-900">roast</p>
+					<p class="font-dongle text-9xl text-gray-900">roast it!</p>
 					<p class="mb-10 text-2xl text-gray-900">/maxmustermann</p>
 
 					{/*animated button*/}

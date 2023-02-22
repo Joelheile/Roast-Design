@@ -19,6 +19,7 @@ import {
 
 const SignUp = () => {
 	const [email, setEmail] = useState("");
+	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
 
@@ -40,6 +41,7 @@ const SignUp = () => {
 					await setDoc(docRef, {
 						email,
 						userID: user.uid,
+						username: username,
 						timestamp: serverTimestamp(),
 					}).then((re) => {
 						console.log("yes the data has been enteres");
@@ -83,11 +85,21 @@ const SignUp = () => {
 
 								<input
 									className="focus:shadow-outline w-72 rounded-md bg-primaryLight p-3 py-3  px-3 placeholder-primaryMid outline-none transition-all duration-300 ease-in-out hover:w-80"
-									id="username"
+									id="mail"
 									type="text"
 									placeholder="Enter E-Mail"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
+								/>
+							</div>
+							<div class="mb-4">
+								<input
+									className="focus:shadow-outline w-72 rounded-md bg-primaryLight p-3 py-3  px-3 placeholder-primaryMid outline-none transition-all duration-300 ease-in-out hover:w-80"
+									id="username"
+									type="text"
+									placeholder="Enter username"
+									value={username}
+									onChange={(e) => setUsername(e.target.value)}
 								/>
 							</div>
 							<div class="mb-6">
