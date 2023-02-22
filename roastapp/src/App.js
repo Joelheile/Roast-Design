@@ -4,6 +4,7 @@ import SignUp from "./components/auth/SignUp";
 import AuthDetails from "./components/AuthDetails";
 import Project from "./components/Project";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import NewProject from "./components/NewProject";
 import SuccessAndCopy from "./components/SuccessAndCopy";

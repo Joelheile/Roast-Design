@@ -37,7 +37,7 @@ const SignIn = () => {
 
 	return (
 		// left and right split
-		<div className="mt-48 -ml-20 flex w-screen flex-row justify-center">
+		<div className="mt-48  flex w-screen flex-row justify-center">
 			<div
 				// left
 				className=" mr-48 inline-flex  flex-col"

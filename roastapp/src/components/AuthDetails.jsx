@@ -36,28 +36,30 @@ const AuthDetails = () => {
 		navigate("/");
 	};
 	return (
-		<div>
-			{authUser ? (
-				<>
-					<p>{`Signed In as ${authUser.email}`}</p>
-					<button
-						className="w-auto rounded-2xl bg-primary py-2 px-4 font-bold text-white hover:bg-primaryMid"
-						onClick={userSignOut}
-					>
-						Sign Out
-					</button>
-				</>
-			) : (
-				<>
-					<p>Signed Out</p>
-					<button
-						className="w-auto rounded-2xl bg-primary py-2 px-4 font-bold text-white hover:bg-primaryMid"
-						onClick={homeHandler}
-					>
-						Home
-					</button>
-				</>
-			)}
+		<div className="flex w-screen flex-col justify-center align-middle">
+			<div className="mt-48 self-center">
+				{authUser ? (
+					<>
+						<p>{`Signed In as "${authUser.email}"`}</p>
+						<button
+							className="mt-3 w-auto rounded-2xl bg-primary py-2 px-4 font-bold text-white hover:bg-primaryHover"
+							onClick={userSignOut}
+						>
+							Please sign me out
+						</button>
+					</>
+				) : (
+					<>
+						<p>You're signed out.</p>
+						<button
+							className="mt-3 w-auto rounded-2xl bg-primary py-2 px-4 font-bold text-white hover:bg-primaryHover"
+							onClick={homeHandler}
+						>
+							Go to homepage
+						</button>
+					</>
+				)}
+			</div>
 		</div>
 	);
 };
