@@ -16,7 +16,7 @@ export default function Navbar() {
 
 	return (
 		<div className="mb-5  bg-primary px-2 py-2.5 ">
-			<nav className="container mx-auto ml-32 flex flex-wrap items-center justify-between">
+			<nav className="container mx-auto flex flex-wrap items-center justify-between">
 				<Link
 					to="/project"
 					className="font-dongle text-5xl font-bold text-white"
@@ -38,7 +38,7 @@ export default function Navbar() {
 					</button>
 				</div>
 				<button
-					className=" display: block rounded py-2 px-4 font-bold text-black"
+					className=" display: block rounded font-bold text-black"
 					onClick={signout}
 				>
 					<svg

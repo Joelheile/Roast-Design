@@ -37,10 +37,10 @@ const SignIn = () => {
 
 	return (
 		// left and right split
-		<div className="mt-48  flex w-screen flex-row justify-center">
+		<div className="mt-36 ml-24 flex w-screen flex-row justify-evenly ">
 			<div
 				// left
-				className=" mr-48 inline-flex  flex-col"
+				className="mr-10 inline-flex  flex-col "
 			>
 				<div className="flex flex-col items-start justify-end">
 					<h1 className="mb-3 text-3xl font-bold">Welcome dear roaster.</h1>
@@ -49,7 +49,7 @@ const SignIn = () => {
 				</div>
 				<div></div>
 			</div>
-			<div class="ml-48 flex">
+			<div class="mr-48 flex">
 				<form class="mb-4 flex flex-col rounded bg-white ">
 					<div class="mb-4">
 						<h1 className=" mb-5 text-2xl font-semibold text-primary">
