@@ -33,9 +33,8 @@ import {
 const CommentProject = (props) => {
 	const location = useLocation(); // get userID from sign in / sign up
 	const data = location.state;
-	console.log(data);
-	let navigate = useNavigate();
 
+	let navigate = useNavigate();
 	const { id } = useParams();
 	const [content, setContent] = useState([]);
 
@@ -55,8 +54,9 @@ const CommentProject = (props) => {
 	// position
 
 	const [position, setPosition] = useState({});
-	const trackPos = (data) => {
+	const trackPos = (data, id) => {
 		setPosition({ x: data.x, y: data.y });
+		console.log(position);
 	};
 
 	// image dimensions
@@ -81,16 +81,12 @@ const CommentProject = (props) => {
 		loadImage(setImageDimensions, imageUrl);
 	}, []);
 
-	// create comment
-	// classe mit setstate
-	// classe setstate übergeben
-	// classe fetch übergeben
-	// firestore stream
-
 	const commentID = v4();
 	const [item, setItem] = useState("");
 	const [items, setItems] = useState(
-		JSON.parse(localStorage.getItem(`items-${data.projectCheckID}`)) || []
+		JSON.parse(
+			localStorage.getItem(`projectComments-${data.projectCheckID}`)
+		) || []
 		// TODO: Upload local storage to Firebase
 	);
 
@@ -136,20 +132,20 @@ const CommentProject = (props) => {
 	};
 
 	useEffect(() => {
-		localStorage.setItem(`items-${data.projectCheckID}`, JSON.stringify(items));
+		localStorage.setItem(
+			`projectComments-${data.projectCheckID}`,
+			JSON.stringify(items)
+		);
 	}, [items]);
 
 	const updatePos = (e, data, id) => {
-		console.log("event:" + e);
-		console.log("data:" + data);
-		console.log("ID: " + position);
 		let elementPosition = { ...position };
 		const elementID = e.target.id;
 		elementPosition[elementID] = {};
 		elementPosition[elementID]["x"] = data.x;
 		elementPosition[elementID]["y"] = data.y;
-		setPosition(elementPosition);
-		console.log("x" + data.x + ", y" + data.y + " ID" + elementID);
+		setPosition(elementPosition, elementID);
+
 		const elementX = data.x;
 		const elementY = data.y;
 	};
@@ -202,7 +198,7 @@ const CommentProject = (props) => {
 										>
 											<div className="inline-block w-auto cursor-pointer flex-row rounded-xl p-5 text-white">
 												<div className="speech-bubble">
-													<p style={{ margin: 0 }}>{item.item}</p>
+													<p style={{ margin: 0 }}>{item.item} </p>
 												</div>
 											</div>
 										</button>
