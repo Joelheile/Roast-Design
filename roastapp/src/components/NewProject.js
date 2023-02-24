@@ -3,6 +3,8 @@ import {
 	getDocs,
 	addDoc,
 	serverTimestamp,
+	setDoc,
+	doc,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 //import "../styles.css";
@@ -26,7 +28,6 @@ export default function NewProject(props) {
 	const [imageUrls, setImageUrls] = useState([]);
 	const [previewFile, setPreviewFile] = useState();
 
-	const projectsCollectionRef = collection(db, "projects");
 	const userID = useLocation(); // get userID passed from dashboard
 	const projectCheckID = v4();
 
@@ -68,7 +69,9 @@ export default function NewProject(props) {
 			});
 		});
 
-		await addDoc(projectsCollectionRef, {
+		const projectsCollectionRef = collection(db, "projects");
+
+		await setDoc(doc(db, "projects", projectCheckID), {
 			userID: userID.state,
 			title: title,
 			projectCheckID: projectCheckID,

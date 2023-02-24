@@ -113,19 +113,17 @@ export default function Project(props) {
 								>
 									<div className="">
 										{projects.localImageURL === "undefined" && (
-											<div className="transition-300 flex-col justify-center rounded-2xl bg-primaryLight p-10 pl-14  pr-14 text-center text-xl text-primary transition-all duration-300 ease-in-out hover:bg-primaryMid hover:text-white">
+											<div className="transition-300 flex-col justify-center rounded-2xl bg-primaryLight p-10 pl-14  pr-14 text-center text-xl text-primary transition-all duration-300 ease-in-out hover:rounded-3xl hover:bg-primaryMid hover:text-white">
 												<h1 className="font-medium ">{projects.title}</h1>
 												<h1 className=" mt-2 text-sm">{projects.websiteURL}</h1>
 											</div>
 										)}
 
 										{projects.localImageURL !== "undefined" && (
-											<div className="rounded-2xl transition-all duration-300 ease-in-out hover:rounded-3xl">
-												<img
-													className="h-34 w-52 rounded-2xl transition-all duration-300 ease-in-out hover:rounded-3xl"
-													src={projects.localImageURL}
-												/>
-											</div>
+											<img
+												className="h-34 w-52 rounded-2xl transition-all duration-300 ease-in-out hover:rounded-3xl"
+												src={projects.localImageURL}
+											/>
 										)}
 									</div>
 								</div>

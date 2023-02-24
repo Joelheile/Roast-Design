@@ -11,6 +11,7 @@ import {
 	addDoc,
 	updateDoc,
 	serverTimestamp,
+	setDoc,
 } from "firebase/firestore";
 import React, { useState, useEffect, useCallback } from "react";
 import { useLocation, useParams } from "react-router-dom";
@@ -108,7 +109,10 @@ const CommentProject = (props) => {
 		}
 
 		// TODO: hier muss createComment hin
-		const commentsCollectionRef = collection(db, "comments");
+		const commentsCollectionRef = collection(
+			db,
+			`projects/${data.projectCheckID}/${commentID}`
+		);
 
 		const createComment = async () => {
 			await addDoc(commentsCollectionRef, {
@@ -232,7 +236,7 @@ const CommentProject = (props) => {
 					{items.map((item, index) => {
 						return (
 							<>
-								<div className="md:flex-column  items-center justify-center rounded-2xl border border-primaryLight bg-primaryLight align-middle shadow ">
+								<div className="md:flex-column mb-5 items-center justify-center rounded-2xl border border-primaryLight bg-primaryLight align-middle shadow ">
 									<div className="m-3">
 										<p>{item.item}</p>
 									</div>
