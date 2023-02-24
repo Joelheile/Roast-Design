@@ -156,31 +156,53 @@ const CommentProject = (props) => {
 
 	return (
 		<>
-			<div className=" mt-5 ml-48 flex w-96 justify-self-center">
-				<Alert status="info">
-					<AlertIcon />
-					Double click to delete a comment
-				</Alert>
-			</div>
 			<div className="flex">
 				<div
 					// links
 					className="mt-10 flex w-3/4 flex-row items-center justify-center"
 				>
 					<div>
-						<div id="new-item">
-							<input
-								className="text-m mr-2 mb-5 shrink rounded-2xl  border border-gray-300 p-10 py-2 px-4 text-black outline-none hover:bg-hover"
-								value={item}
-								onChange={(e) => setItem(e.target.value)}
-								placeholder="Enter something..."
-								onKeyPress={(e) => keyPress(e)}
-							/>
+						<div id="new-item" className="flex justify-between">
+							<div>
+								<input
+									className="text-m mr-2 mb-5 shrink rounded-2xl  border border-gray-300 p-10 py-2 px-4 text-black outline-none hover:bg-hover"
+									value={item}
+									onChange={(e) => setItem(e.target.value)}
+									placeholder="Enter something..."
+									onKeyPress={(e) => keyPress(e)}
+								/>
+								<button
+									className="w-auto rounded-2xl bg-primary py-2 px-4 font-medium text-white hover:bg-primaryHover"
+									onClick={newitem}
+								>
+									ENTER
+								</button>
+							</div>
 							<button
-								className="w-auto rounded-2xl bg-primary py-2 px-4 font-bold text-white hover:bg-primaryHover"
-								onClick={newitem}
+								onClick={() => navigate("/project", { state: data.userID })}
+								href="#_"
+								class=" group relative inline-flex h-12 w-32 items-center justify-center overflow-hidden rounded-3xl border-2 border-primary bg-primary p-2 px-3 py-2 font-medium text-white shadow-md transition duration-300 ease-out"
 							>
-								ENTER
+								<span class="ease absolute inset-0 flex h-full w-full -translate-x-full items-center justify-center bg-primary text-white duration-300 group-hover:translate-x-0">
+									<svg
+										class="h-6 w-6"
+										fill="none"
+										stroke="currentColor"
+										viewBox="0 0 24 24"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M14 5l7 7m0 0l-7 7m7-7H3"
+										></path>
+									</svg>
+								</span>
+								<span class=" font-m ease absolute flex h-full w-full transform items-center justify-center text-white transition-all duration-300 group-hover:translate-x-full">
+									All projects
+								</span>
+								<span class="invisible relative">Button Text</span>
 							</button>
 						</div>
 						<div id="items">
@@ -222,10 +244,18 @@ const CommentProject = (props) => {
 						</div>
 					</div>
 				</div>
+
 				<div
 					// rechts
 					className="border-1.5 m-4 mr-20  w-1/4 border-solid"
 				>
+					<div className=" mb-10  flex w-96 flex-col justify-self-center">
+						<Alert status="info" className="mb-5">
+							<AlertIcon />
+							Double click to delete a comment
+						</Alert>
+					</div>
+
 					<h2 className="mb-6 text-3xl font-medium text-primary">
 						Feed Design
 					</h2>

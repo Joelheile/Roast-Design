@@ -21,6 +21,8 @@ export default function Navbar() {
 					{" "}
 					Roast.design
 				</h1>
+
+				{/*
 				<div>
 					<button
 						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryHover"
@@ -35,6 +37,7 @@ export default function Navbar() {
 						new roast
 					</button>
 				</div>
+	*/}
 				<button
 					className=" display: block rounded font-bold text-black"
 					onClick={signout}
