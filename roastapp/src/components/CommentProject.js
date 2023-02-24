@@ -154,81 +154,95 @@ const CommentProject = (props) => {
 		setItems(items.filter((item) => item.id !== id));
 	};
 
-	// end comment
-
 	return (
-		<div className="flex">
-			<div
-				// links
-				className="mt-10 flex w-3/4 flex-row items-center justify-center"
-			>
-				<div>
-					<div id="new-item">
-						<input
-							className="text-m mr-2 mb-5 shrink rounded-2xl  border border-gray-300 p-10 py-2 px-4 text-black outline-none hover:bg-hover"
-							value={item}
-							onChange={(e) => setItem(e.target.value)}
-							placeholder="Enter something..."
-							onKeyPress={(e) => keyPress(e)}
-						/>
-						<button
-							className="w-auto rounded-2xl bg-primary py-2 px-4 font-bold text-white hover:bg-primaryHover"
-							onClick={newitem}
-						>
-							ENTER
-						</button>
-					</div>
-					<div id="items">
-						{items.map((item, index) => {
-							return (
-								<Draggable
-									key={item.id}
-									defaultPosition={item.defaultPos}
-									onStop={updatePos}
-									onDrag={trackPos}
-								>
-									<button
-										id="delete"
-										onDoubleClick={(e) => deleteNote(item.id)}
+		<>
+			<div className=" mt-5 ml-48 flex w-96 justify-self-center">
+				<Alert status="info">
+					<AlertIcon />
+					Double click to delete a comment
+				</Alert>
+			</div>
+			<div className="flex">
+				<div
+					// links
+					className="mt-10 flex w-3/4 flex-row items-center justify-center"
+				>
+					<div>
+						<div id="new-item">
+							<input
+								className="text-m mr-2 mb-5 shrink rounded-2xl  border border-gray-300 p-10 py-2 px-4 text-black outline-none hover:bg-hover"
+								value={item}
+								onChange={(e) => setItem(e.target.value)}
+								placeholder="Enter something..."
+								onKeyPress={(e) => keyPress(e)}
+							/>
+							<button
+								className="w-auto rounded-2xl bg-primary py-2 px-4 font-bold text-white hover:bg-primaryHover"
+								onClick={newitem}
+							>
+								ENTER
+							</button>
+						</div>
+						<div id="items">
+							{items.map((item, index) => {
+								return (
+									<Draggable
+										key={item.id}
+										defaultPosition={item.defaultPos}
+										onStop={updatePos}
+										onDrag={trackPos}
 									>
-										<div className="inline-block w-auto cursor-pointer flex-row rounded-xl p-5 text-white">
-											<div className="speech-bubble">
-												<p style={{ margin: 0 }}>{item.item}</p>
+										<button
+											id="delete"
+											onDoubleClick={(e) => deleteNote(item.id)}
+										>
+											<div className="inline-block w-auto cursor-pointer flex-row rounded-xl p-5 text-white">
+												<div className="speech-bubble">
+													<p style={{ margin: 0 }}>{item.item}</p>
+												</div>
 											</div>
-										</div>
-									</button>
-								</Draggable>
-							);
-						})}
-
-						<img className="h-screen max-h-[60vh] rounded-xl" src={url} />
-					</div>
-					<div className="mt-5 ml-48 flex w-96">
-						<Alert status="info">
-							<AlertIcon />
-							Double click to delete a comment
-						</Alert>
+										</button>
+									</Draggable>
+								);
+							})}
+							<img
+								className="h-screen max-h-[60vh] rounded-xl"
+								src={url}
+								onError={(event) => (event.target.style.display = "none")}
+							/>
+							<div className="">
+								<iframe
+									src={data.websiteURL}
+									width={1000}
+									height={10000}
+									sandbox="allow-scripts allow-modal"
+									loading="eager"
+								></iframe>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div
-				// rechts
-				className="border-1.5 m-4 mr-20  w-1/4 border-solid"
-			>
-				<h2 className="mb-6 text-3xl font-medium text-primary">Feed Design</h2>
-				{items.map((item, index) => {
-					return (
-						<>
-							<div className="md:flex-column  items-center justify-center rounded-2xl border border-primaryLight bg-primaryLight align-middle shadow ">
-								<div className="m-3">
-									<p>{item.item}</p>
+				<div
+					// rechts
+					className="border-1.5 m-4 mr-20  w-1/4 border-solid"
+				>
+					<h2 className="mb-6 text-3xl font-medium text-primary">
+						Feed Design
+					</h2>
+					{items.map((item, index) => {
+						return (
+							<>
+								<div className="md:flex-column  items-center justify-center rounded-2xl border border-primaryLight bg-primaryLight align-middle shadow ">
+									<div className="m-3">
+										<p>{item.item}</p>
+									</div>
 								</div>
-							</div>
-						</>
-					);
-				})}
+							</>
+						);
+					})}
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 export default CommentProject;

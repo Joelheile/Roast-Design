@@ -24,7 +24,7 @@ export default function Project(props) {
 
 	const userID = useLocation(); // get userID from sign in / sign up
 	let navigate = useNavigate();
-	console.log(userID.state);
+	console.log("UserID:" + userID.state);
 
 	const [url, setURL] = useState("");
 
@@ -49,13 +49,12 @@ export default function Project(props) {
 		getProjects();
 	}, []);
 
-	// image dimensions
-	const [state, setState] = useState([]);
+	console.log(projects);
 
 	return (
-		<div className="ml-10 flex flex-col">
+		<div className=" ml-32 mr-32 flex flex-col">
 			<div className="m-auto mt-5 mb-10">
-				<div class="inline-flex h-80 w-80 flex-col items-center justify-start">
+				<div class="w-70 inline-flex h-80 flex-col items-center justify-start">
 					<p class="font-dongle text-9xl text-gray-900">roast it!</p>
 					<p class="mb-10 text-2xl text-gray-900">
 						{/*HIER KOMMT USERNAME REIN, der eigentlich abgefragt wird*/}
@@ -90,8 +89,8 @@ export default function Project(props) {
 					</button>
 				</div>
 			</div>
-			<h2>Projects</h2>
-			<div className="flex flex-wrap gap-5  ">
+			<h2 className="mb-5 text-3xl font-medium text-primary">Projects</h2>
+			<div className="flex flex-wrap gap-10  ">
 				{projects.map((projects) => {
 					return (
 						<>
@@ -102,8 +101,10 @@ export default function Project(props) {
 								state={{
 									projectCheckID: projects.projectCheckID,
 									title: projects.title,
+									websiteURL: projects.websiteURL,
 									imageURL: projects.imageURL,
 									userID: userID.state,
+									localImageURL: projects.localImageURL,
 								}}
 							>
 								<div
@@ -111,12 +112,21 @@ export default function Project(props) {
 									key={projects.projectCheckID}
 								>
 									<div className="">
-										<h1 className="text-m   text-black ">{projects.title}</h1>
+										{projects.localImageURL === "undefined" && (
+											<div className="transition-300 flex-col justify-center rounded-2xl bg-primaryLight p-10 pl-14  pr-14 text-center text-xl text-primary transition-all duration-300 ease-in-out hover:bg-primaryMid hover:text-white">
+												<h1 className="font-medium ">{projects.title}</h1>
+												<h1 className=" mt-2 text-sm">{projects.websiteURL}</h1>
+											</div>
+										)}
 
-										<img
-											className="w-40 rounded-2xl"
-											src={projects.localImageURL}
-										/>
+										{projects.localImageURL !== "undefined" && (
+											<div className="rounded-2xl transition-all duration-300 ease-in-out hover:rounded-3xl">
+												<img
+													className="h-34 w-52 rounded-2xl transition-all duration-300 ease-in-out hover:rounded-3xl"
+													src={projects.localImageURL}
+												/>
+											</div>
+										)}
 									</div>
 								</div>
 							</Link>

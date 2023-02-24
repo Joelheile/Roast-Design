@@ -31,7 +31,7 @@ export default function Navbar() {
 						projects
 					</button>
 					<button
-						className="rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryHover"
+						className="mr-52 rounded bg-primary py-2 px-4 font-medium text-white hover:bg-primaryHover"
 						onClick={newProjectNav}
 					>
 						new roast

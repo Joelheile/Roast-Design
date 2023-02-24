@@ -70,9 +70,10 @@ export default function NewProject(props) {
 
 		await addDoc(projectsCollectionRef, {
 			userID: userID.state,
+			title: title,
 			projectCheckID: projectCheckID,
 			imageURL: imageRef?.fullPath,
-			websiteUrl: webUrl,
+			websiteURL: webUrl,
 			localImageURL: `${previewFile}`,
 			timestamp: serverTimestamp(),
 		});
@@ -155,7 +156,8 @@ export default function NewProject(props) {
 							className="ml-5 rounded-xl border border-primary bg-primary p-1 font-medium text-white hover:bg-primaryHover hover:shadow-2xl"
 							onClick={() => {
 								navigator.clipboard.writeText(copyText);
-								navigate("/project");
+
+								navigate("/project", { state: userID.state });
 							}}
 						>
 							Get Link

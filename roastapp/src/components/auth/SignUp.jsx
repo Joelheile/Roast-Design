@@ -82,7 +82,16 @@ const SignUp = () => {
 								<h1 className=" mb-5 text-2xl font-semibold text-primary">
 									Sign in
 								</h1>
-
+								<div class="mb-4">
+									<input
+										className="focus:shadow-outline w-72 rounded-md bg-primaryLight p-3 py-3  px-3 placeholder-primaryMid outline-none transition-all duration-300 ease-in-out hover:w-80"
+										id="username"
+										type="text"
+										placeholder="Enter username"
+										value={username}
+										onChange={(e) => setUsername(e.target.value)}
+									/>
+								</div>
 								<input
 									className="focus:shadow-outline w-72 rounded-md bg-primaryLight p-3 py-3  px-3 placeholder-primaryMid outline-none transition-all duration-300 ease-in-out hover:w-80"
 									id="mail"
@@ -92,16 +101,7 @@ const SignUp = () => {
 									onChange={(e) => setEmail(e.target.value)}
 								/>
 							</div>
-							<div class="mb-4">
-								<input
-									className="focus:shadow-outline w-72 rounded-md bg-primaryLight p-3 py-3  px-3 placeholder-primaryMid outline-none transition-all duration-300 ease-in-out hover:w-80"
-									id="username"
-									type="text"
-									placeholder="Enter username"
-									value={username}
-									onChange={(e) => setUsername(e.target.value)}
-								/>
-							</div>
+
 							<div class="mb-6">
 								<input
 									className="focus:shadow-outline w-72 rounded-md bg-primaryLight p-3 py-3  px-3 placeholder-primaryMid outline-none transition-all duration-300 ease-in-out hover:w-80"
