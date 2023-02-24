@@ -1,4 +1,9 @@
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import {
+	collection,
+	getDocs,
+	addDoc,
+	serverTimestamp,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 //import "../styles.css";
 import { db } from "../firebase";
@@ -23,6 +28,10 @@ export default function NewProject(props) {
 	const userID = useLocation(); // get userID passed from dashboard
 	const projectCheckID = v4();
 
+	const [showWebsite, setShowWebsite] = useState(false);
+	const [showImage, setShowImage] = useState(false);
+	const [showAlert, setShowAlert] = useState(false);
+
 	const [projectImages, setProjectImages] = useState(
 		JSON.parse(localStorage.getItem(`projectImages-${projectCheckID}`)) || []
 		// TODO: Upload local storage to Firebase
@@ -30,11 +39,12 @@ export default function NewProject(props) {
 
 	const [imageUpload, setImageUpload] = useState(null);
 	const localImageURL = "";
+
 	const createProject = async () => {
-		if (imageUpload == null) return; // when nothing selected then nothing
+		if (imageUpload == null && webUrl == null) return; // when nothing selected then nothing
 		const imageRef = ref(
 			storage,
-			`images/${userID.state}/${projectCheckID}/${imageUpload.name + v4()}`
+			`images/${userID.state}/${projectCheckID}/${imageUpload?.name + v4()}`
 		);
 		uploadBytes(imageRef, imageUpload).then((snapshot) => {
 			getDownloadURL(snapshot.ref).then((url) => {
@@ -43,26 +53,22 @@ export default function NewProject(props) {
 		});
 
 		await addDoc(projectsCollectionRef, {
-			webUrl: webUrl,
 			userID: userID.state,
 			projectCheckID: projectCheckID,
-			imageURL: imageRef.fullPath,
+			imageURL: imageRef?.fullPath,
+			websiteUrl: webUrl,
 			localImageURL: `${previewFile}`,
+			timestamp: serverTimestamp(),
 		});
-
 		// navigate("/success", { state: projectCheckID });
 		setShowAlert(true);
 	};
 
-	const [showWebsite, setShowWebsite] = useState(false);
-	const [showImage, setShowImage] = useState(false);
-	const [showAlert, setShowAlert] = useState(false);
-
-	const copyText = `roast.design/project/${projectCheckID.state}`;
+	const copyText = `roast.design/project/${projectCheckID}`;
 
 	return (
 		<div className="flex grid h-screen grid-cols-2 items-center justify-center">
-			<div class="m-auto flex w-1/2 flex-col justify-center ">
+			<div className="m-auto flex w-1/2 flex-col justify-center ">
 				<h1 className="mb-5 text-2xl font-semibold text-primary">New Roast</h1>
 				<input
 					className="mb-5  rounded-full border border-primaryLight bg-primaryLight py-2 px-4 text-primary placeholder-primaryMid  !outline-none focus:border-primaryLight "
