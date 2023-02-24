@@ -17,10 +17,12 @@ import {
 	AlertIcon,
 	AlertTitle,
 } from "@chakra-ui/react";
+import html2canvas from "html2canvas";
 
 export default function NewProject(props) {
 	let navigate = useNavigate();
 	const [webUrl, setWebUrl] = useState("");
+	const [title, setTitle] = useState("");
 	const [imageUrls, setImageUrls] = useState([]);
 	const [previewFile, setPreviewFile] = useState();
 
@@ -31,6 +33,9 @@ export default function NewProject(props) {
 	const [showWebsite, setShowWebsite] = useState(false);
 	const [showImage, setShowImage] = useState(false);
 	const [showAlert, setShowAlert] = useState(false);
+	const [showErrorAlertURLandImage, setShowErrorAlertURLandImage] =
+		useState(false);
+	const [showErrorAlertTitle, setShowErrorAlertTitle] = useState(false);
 
 	const [projectImages, setProjectImages] = useState(
 		JSON.parse(localStorage.getItem(`projectImages-${projectCheckID}`)) || []
@@ -40,8 +45,19 @@ export default function NewProject(props) {
 	const [imageUpload, setImageUpload] = useState(null);
 	const localImageURL = "";
 
+	// create project
+
 	const createProject = async () => {
-		if (imageUpload == null && webUrl == null) return; // when nothing selected then nothing
+		if (title === "") {
+			setShowErrorAlertTitle(true);
+			return;
+		}
+		if (imageUpload == null && webUrl === "") {
+			console.log("failure");
+			setShowErrorAlertURLandImage(true);
+			return;
+		} // when nothing selected then nothing
+
 		const imageRef = ref(
 			storage,
 			`images/${userID.state}/${projectCheckID}/${imageUpload?.name + v4()}`
@@ -69,7 +85,14 @@ export default function NewProject(props) {
 	return (
 		<div className="flex grid h-screen grid-cols-2 items-center justify-center">
 			<div className="m-auto flex w-1/2 flex-col justify-center ">
-				<h1 className="mb-5 text-2xl font-semibold text-primary">New Roast</h1>
+				<input
+					className="mb-10 w-40 border-b-2 border-primaryLight py-2 px-4 text-2xl text-primary  placeholder-primaryMid !outline-none transition-all duration-300 ease-in-out focus:w-64  focus:border-primaryMid"
+					placeholder="project title"
+					onChange={(event) => {
+						setTitle(event.target.value);
+						console.log(title);
+					}}
+				/>
 				<input
 					className="mb-5  rounded-full border border-primaryLight bg-primaryLight py-2 px-4 text-primary placeholder-primaryMid  !outline-none focus:border-primaryLight "
 					placeholder="Insert Link"
@@ -111,6 +134,7 @@ export default function NewProject(props) {
 				<div className="border-4 border-primaryLight">
 					{showWebsite && (
 						<iframe
+							id="print"
 							src={webUrl}
 							width={750}
 							height={500}
@@ -121,7 +145,7 @@ export default function NewProject(props) {
 					{showImage && <img src={previewFile} className="max-h-[60vh]" />}
 				</div>
 			</div>
-			<div className="center fixed bottom-0 flex w-96 self-center ">
+			<div className="center fixed bottom-0 flex w-96 flex-col self-center justify-self-center ">
 				{showAlert && (
 					<Alert status="success">
 						<AlertIcon />
@@ -136,6 +160,22 @@ export default function NewProject(props) {
 						>
 							Get Link
 						</button>
+					</Alert>
+				)}
+				{showErrorAlertTitle && (
+					<Alert status="error">
+						<AlertIcon />
+						<AlertTitle>Oh!</AlertTitle>
+						<AlertDescription>You have to enter a title</AlertDescription>
+					</Alert>
+				)}
+				{showErrorAlertURLandImage && (
+					<Alert status="error">
+						<AlertIcon />
+						<AlertTitle>Oh!</AlertTitle>
+						<AlertDescription>
+							You have to enter an url or an image
+						</AlertDescription>
 					</Alert>
 				)}
 			</div>
