@@ -69,8 +69,6 @@ export default function NewProject(props) {
 			});
 		});
 
-		const projectsCollectionRef = collection(db, "projects");
-
 		await setDoc(doc(db, "projects", projectCheckID), {
 			userID: userID.state,
 			title: title,

@@ -87,8 +87,27 @@ const CommentProject = (props) => {
 		JSON.parse(
 			localStorage.getItem(`projectComments-${data.projectCheckID}`)
 		) || []
-		// TODO: Upload local storage to Firebase
 	);
+	/*
+	Database push doesn't work like I want at the moment
+	It should delete firstly every comment in the database and then create new instances with updated locations
+
+	useEffect(() => { 
+		function comment(item) {
+			console.log("Inhalt: " + item.item);
+		}
+
+		items.forEach(async (comment) => {
+			const docRef = doc(
+				db,
+				`projects/${data.projectCheckID}/${commentID}`,
+				commentID
+			);
+			await deleteDoc(docRef);
+		});
+	}); */
+
+	//TODO: Use effect, dass items.forEach jeweils alle kommentare gelöscht werden & dann alle kommentare hinzugefügt werden
 
 	const newitem = () => {
 		if (item.trim() !== "") {
@@ -119,7 +138,7 @@ const CommentProject = (props) => {
 				commentID: commentID,
 				timestamp: serverTimestamp(),
 			});
-			console.log("Comment");
+			console.log("Comment created");
 		};
 		createComment();
 	};
