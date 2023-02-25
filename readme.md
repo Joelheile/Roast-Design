@@ -5,12 +5,25 @@ I hope that you've read my text about the purpose of this tool.
 It's for having a single place where all feedback is gathered. And placed visually where it belongs - no matter what medium.
 That's how we eliminate many feedback loops where nobody knows where the feedback belongs to.
 
-## Web app
+### Web app
 
 I wanted this project to be a web app which can be used from every device.
 That's why I used the React.js framework, which I learned in many days of work from scratch.
 
-## Localstorage and Databases
+## How to use the tool
+
+- Visit [roast.design](https://www.roast.design).
+- Create an account
+- Create a new roast on button
+- Insert a link or upload an image and set a title for the project
+- you can copy now the link (the function for external people without account will be implemented soon)
+
+you should see now your project in the dashboard.
+
+- you can now click on an image or title and will be navigated to the comment page
+- now it's time to add gread feedback comments and enjoy!
+
+### Localstorage and Databases
 
 User Management is done in a Google Firestore database and every project and image is added there.
 There is a bug I can't figure out on how to update the moved comments location inside of the comment collection without deleting all the comments and creating new ones.
@@ -22,17 +35,17 @@ I tried a lot of different ways on how to query all projects and select it with 
 
 That's why it is only working correctly on your pc/mac/laptops browser :)
 
-## Responsiveness
+### Responsiveness
 
 The web app is mostly responsive. Sadly not at the commentProject page, because it's very difficult to resize the webview (iframe) dynamiccly.
 So the best experience is on a bigger screen.
 
-## Components
+### Components
 
 The code is a bit messy and not put into different components because I developed it on the go while I learned the language and how my use case could be built.
 I'll rewrite the functions and separate them soon, but now it's easier to understand how every function works.
 
-## The learnings
+# The learnings
 
 I had a lot of fun diving into this new coding experience and it was awesome seeing how fast my skills developed.
 Nevertheless I had many challenging tasks on how to pass information between screens or from the database.
