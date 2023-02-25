@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 
+// replaced by alert => not used
+
 export default function SuccessAndCopy(props) {
 	const projectCheckID = useLocation(); // get userID from sign in / sign up
 	let navigate = useNavigate();

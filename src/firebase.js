@@ -7,20 +7,20 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { getStorage } from "firebase/storage";
 
-// eigentlich .env reinmachen
+//config in secret .env for security
 const firebaseConfig = {
-	apiKey: "AIzaSyCd_8rAhN639jO_jfbsWMvGSF7UR9VPUYM",
-	authDomain: "roastapp-b0ba0.firebaseapp.com",
-	projectId: "roastapp-b0ba0",
-	storageBucket: "roastapp-b0ba0.appspot.com",
-	messagingSenderId: "819772824997",
-	appId: "1:819772824997:web:005c308328ba6e4a029c4c",
-	measurementId: "G-VXMRDFJCXC",
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+	projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+	storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+	appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
-// Initialize Firebase Authentication and get a reference to the service

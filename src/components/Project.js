@@ -31,6 +31,7 @@ export default function Project(props) {
 	useEffect(() => {
 		// called when page renders
 
+		// project query and comparison to just get projects of logged in user
 		const getProjects = async () => {
 			const q = query(
 				collection(db, "projects"),
@@ -56,9 +57,6 @@ export default function Project(props) {
 			<div className="m-auto mt-5 mb-10">
 				<div class="w-70 inline-flex h-80 flex-col items-center justify-start">
 					<p class="font-dongle text-9xl text-gray-900">roast it!</p>
-					<p class="mb-10 text-2xl text-gray-900">
-						{/*HIER KOMMT USERNAME REIN, der eigentlich abgefragt wird*/}
-					</p>
 
 					{/*animated button*/}
 					<button
@@ -91,6 +89,7 @@ export default function Project(props) {
 			</div>
 			<h2 className="mb-5 text-3xl font-medium text-primary">Projects</h2>
 			<div className="flex flex-wrap gap-10  ">
+				{/* generating cards from array and content */}
 				{projects.map((projects) => {
 					return (
 						<>

@@ -6,6 +6,8 @@ import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
 const AuthDetails = () => {
+	//logout screen
+
 	const navigate = useNavigate();
 	const [authUser, setAuthUser] = useState(null);
 

@@ -59,6 +59,7 @@ export default function NewProject(props) {
 			return;
 		} // when nothing selected then nothing
 
+		// function to get preview Image on right side
 		const imageRef = ref(
 			storage,
 			`images/${userID.state}/${projectCheckID}/${imageUpload?.name + v4()}`
@@ -69,6 +70,7 @@ export default function NewProject(props) {
 			});
 		});
 
+		// set doc with custom id
 		await setDoc(doc(db, "projects", projectCheckID), {
 			userID: userID.state,
 			title: title,
@@ -185,13 +187,3 @@ export default function NewProject(props) {
 		</div>
 	);
 }
-
-/*
-<p>{projectCheckID}</p>
-Image Preview is missing
-
-{imageUpload && (
-							<img src={URL.createObjectURL(setImageUpload)} height="100px" />
-						)}
-
-                        */

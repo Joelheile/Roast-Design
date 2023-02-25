@@ -132,8 +132,7 @@ const CommentProject = (props) => {
 		});
 	}); */
 
-	//TODO: Use effect, dass items.forEach jeweils alle kommentare gelöscht werden & dann alle kommentare hinzugefügt werden
-
+	// create new item and put it in array to store in local storage
 	const newitem = () => {
 		if (item.trim() !== "") {
 			const newitem = {
@@ -148,7 +147,6 @@ const CommentProject = (props) => {
 			setItem("");
 		}
 
-		// TODO: hier muss createComment hin
 		const commentsCollectionRef = collection(
 			db,
 			`projects/${data.projectCheckID}/${commentID}`
@@ -182,6 +180,7 @@ const CommentProject = (props) => {
 		);
 	}, [items]);
 
+	// update position of element which is later updated in array
 	const updatePos = (e, data, id) => {
 		let elementPosition = { ...position };
 		const elementID = e.target.id;
@@ -202,7 +201,7 @@ const CommentProject = (props) => {
 		<>
 			<div className="flex">
 				<div
-					// links
+					// left
 					className="mt-10 flex w-3/4 flex-row items-center justify-center"
 				>
 					<div>
@@ -277,20 +276,22 @@ const CommentProject = (props) => {
 								onError={(event) => (event.target.style.display = "none")}
 							/>
 
-							<iframe
-								//className="iframe" => responsiveness doesn't work
-								src={data.websiteURL}
-								width={1000}
-								height={10000}
-								sandbox="allow-scripts allow-modal"
-								loading="eager"
-							></iframe>
+							<div>
+								<iframe
+									//className="iframe" => responsiveness doesn't work
+									src={data.websiteURL}
+									width={1000}
+									height={10000}
+									sandbox="allow-scripts allow-modal"
+									loading="eager"
+								></iframe>
+							</div>
 						</div>
 					</div>
 				</div>
 
 				<div
-					// rechts
+					// right
 					className="border-1.5 m-4 mr-20  w-1/4 border-solid"
 				>
 					<div className=" mb-10  flex w-96 flex-col justify-self-center">

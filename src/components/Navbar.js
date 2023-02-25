@@ -38,6 +38,8 @@ export default function Navbar() {
 					</button>
 				</div>
 	*/}
+
+				{/* Signout button */}
 				<button
 					className=" display: block rounded font-bold text-black"
 					onClick={signout}
