@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Getting started with Roast.Design
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hey together! I'm very happy that you are having a look at my CODE Challenge project.
+I hope that you've read my text about the purpose of this tool.
+It's for having a single place where all feedback is gathered. And placed visually where it belongs - no matter what medium.
+That's how we eliminate many feedback loops where nobody knows where the feedback belongs to.
 
-## Available Scripts
+## Web app
 
-In the project directory, you can run:
+I wanted this project to be a web app which can be used from every device.
+That's why I used the React.js framework, which I learned in many days of work from scratch.
 
-### `npm start`
+## Localstorage and Databases
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+User Management is done in a Google Firestore database and every project and image is added there.
+There is a bug I can't figure out on how to update the moved comments location inside of the comment collection without deleting all the comments and creating new ones.
+That's why I chose to save all the comments in the browsers localstorage, because for testing an MVP, storing in the cloud is not necessary.
+This is the reason why you can copy the project link, but if you send it to someone external, it won't show anything yet.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The passed information from the projects page to comment page are not there when someone is not logged in.
+I tried a lot of different ways on how to query all projects and select it with the ID of the URL, but it wasn't as reliable as local storage.
 
-### `npm test`
+That's why it is only working correctly on your pc/mac/laptops browser :)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Responsiveness
 
-### `npm run build`
+The web app is mostly responsive. Sadly not at the commentProject page, because it's very difficult to resize the webview (iframe) dynamiccly.
+So the best experience is on a bigger screen.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Components
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The code is a bit messy and not put into different components because I developed it on the go while I learned the language and how my use case could be built.
+I'll rewrite the functions and separate them soon, but now it's easier to understand how every function works.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## The learnings
 
-### `npm run eject`
+I had a lot of fun diving into this new coding experience and it was awesome seeing how fast my skills developed.
+Nevertheless I had many challenging tasks on how to pass information between screens or from the database.
+There are still many bugs left and much space to improve. But it was a great way to learn a new programming language fast.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+I think this tool can help a lot of people and therefore I want to continue developing it.
+Hopefully with more soon acquired coding skills at CODE and help from other peers.

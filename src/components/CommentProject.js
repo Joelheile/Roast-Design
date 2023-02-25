@@ -25,6 +25,7 @@ import firebase from "firebase/app";
 import "firebase/storage";
 import { v4 } from "uuid";
 import "../styles/speechbubble.css";
+import "../styles/iframe.css";
 import {
 	Alert,
 	AlertDescription,
@@ -275,15 +276,15 @@ const CommentProject = (props) => {
 								src={url}
 								onError={(event) => (event.target.style.display = "none")}
 							/>
-							<div className="">
-								<iframe
-									src={data.websiteURL}
-									width={1000}
-									height={10000}
-									sandbox="allow-scripts allow-modal"
-									loading="eager"
-								></iframe>
-							</div>
+
+							<iframe
+								//className="iframe" => responsiveness doesn't work
+								src={data.websiteURL}
+								width={1000}
+								height={10000}
+								sandbox="allow-scripts allow-modal"
+								loading="eager"
+							></iframe>
 						</div>
 					</div>
 				</div>
