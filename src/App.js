@@ -30,7 +30,6 @@ function App() {
 				<Route path="/signout" element={<AuthDetails />} />
 				<Route path="/project/*" element={<Project />} />
 				<Route path="/project/:id" element={<CommentProject />} />
-				<Route path="/project/edit" element={<CommentProject />} />
 				<Route path="/project/new" element={<NewProject />} />
 				<Route path="/success" element={<SuccessAndCopy />} />
 			</Routes>

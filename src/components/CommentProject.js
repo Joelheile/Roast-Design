@@ -12,6 +12,8 @@ import {
 	updateDoc,
 	serverTimestamp,
 	setDoc,
+	query,
+	where,
 } from "firebase/firestore";
 import React, { useState, useEffect, useCallback } from "react";
 import { useLocation, useParams } from "react-router-dom";
@@ -32,13 +34,35 @@ import {
 
 const CommentProject = (props) => {
 	const location = useLocation(); // get userID from sign in / sign up
-	const data = location.state;
+	const [str, setStr] = useState(location.pathname);
 
+	var locationPath = str.replace("/project/", "");
+	const [project, setProject] = useState([]);
+
+	const data = location.state;
+	/*
+	Query for users which don't have account but only want to add comments
+	if (data == null) {
+		const getProjects = async () => {
+			const q = query(
+				collection(db, "projects"),
+				where("projectCheckID", "==", `${locationPath}`)
+			);
+
+			const data = await getDocs(q);
+			setProject(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+			console.log(project);
+		};
+		getProjects();
+	}
+*/
 	let navigate = useNavigate();
 	const { id } = useParams();
 	const [content, setContent] = useState([]);
 
-	const [url, setURL] = useState();
+	const [url, setURL] = useState(); // imageURL
+
+	// get URL from Database for Image
 	useEffect(() => {
 		// one time loading
 		const func = async () => {
@@ -200,11 +224,11 @@ const CommentProject = (props) => {
 							<button
 								onClick={() => navigate("/project", { state: data.userID })}
 								href="#_"
-								class=" group relative inline-flex h-12 w-32 items-center justify-center overflow-hidden rounded-3xl border-2 border-primary bg-primary p-2 px-3 py-2 font-medium text-white shadow-md transition duration-300 ease-out"
+								className=" group relative inline-flex h-12 w-32 items-center justify-center overflow-hidden rounded-3xl border-2 border-primary bg-primary p-2 px-3 py-2 font-medium text-white shadow-md transition duration-300 ease-out"
 							>
-								<span class="ease absolute inset-0 flex h-full w-full -translate-x-full items-center justify-center bg-primary text-white duration-300 group-hover:translate-x-0">
+								<span className="ease absolute inset-0 flex h-full w-full -translate-x-full items-center justify-center bg-primary text-white duration-300 group-hover:translate-x-0">
 									<svg
-										class="h-6 w-6"
+										className="h-6 w-6"
 										fill="none"
 										stroke="currentColor"
 										viewBox="0 0 24 24"
@@ -213,15 +237,15 @@ const CommentProject = (props) => {
 										<path
 											stroke-linecap="round"
 											stroke-linejoin="round"
-											stroke-width="2"
+											strokeWidth="2"
 											d="M14 5l7 7m0 0l-7 7m7-7H3"
 										></path>
 									</svg>
 								</span>
-								<span class=" font-m ease absolute flex h-full w-full transform items-center justify-center text-white transition-all duration-300 group-hover:translate-x-full">
+								<span className=" font-m ease absolute flex h-full w-full transform items-center justify-center text-white transition-all duration-300 group-hover:translate-x-full">
 									All projects
 								</span>
-								<span class="invisible relative">Button Text</span>
+								<span className="invisible relative">Button Text</span>
 							</button>
 						</div>
 						<div id="items">
@@ -295,11 +319,3 @@ const CommentProject = (props) => {
 	);
 };
 export default CommentProject;
-
-/*
-ZUM DRAUF ZUGREIFEN:
-	projectCheckID: projects.projectCheckID,
-								title: projects.title,
-								userID: userID.state,
-								imageURL: projects.imageURL,
-*/
